@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация клиента</title>
+    <link rel="icon" href="/static/images/icon.png" type="image/png">
+</head>
+<body>
+
+<h2>Регистрация клиента музея</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    {% if error %}
+        <div>{{ error }}</div>
+    {% endif %}
+
+    <label>Имя пользователя:</label>
+    <input type="text" name="username" required value="{{ form_values.username|default:'' }}"><br><br>
+
+    <label>Пароль:</label>
+    <input type="password" name="password" required><br><br>
+
+    <label>Почта:</label>
+    <input type="email" name="email" value="{{ form_values.email|default:'' }}"><br><br>
+
+    <label>ФИО:</label>
+    <input type="text" name="full_name" required value="{{ form_values.full_name|default:'' }}"><br><br>
+
+    <label>Дата рождения:</label>
+    <input type="date" name="date_of_birth" required value="{{ form_values.date_of_birth|default:'' }}"><br><br>
+
+    <label>Номер телефона:</label>
+    <input type="phone" name="phone" required value="{{ form_values.phone_number|default:'' }}"><br><br>
+
+    <button type="submit">Зарегистрироваться</button>
+</form>
+
+<a href="{% url 'home' %}">← Вернуться на главную</a>
+
+</body>
+</html>

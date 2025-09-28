@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}О компании{% endblock %}
+
+{% block content %}
+<h1>О компании</h1>
+
+<div>
+    {% if about %}
+        <h2>О нас</h2>
+        <main>
+            <div>
+                <p>{{ about.content|linebreaks }}</p>
+                <a href="{% url 'museum_info' %}">Вся информация о музее</a><br>
+            </div>
+        </main>
+        
+        <h2>Видео о нашем музее</h2>
+        <div>
+            <video width="360" height="240" 
+                src="/static/videos/people.mp4"
+                autoplay controls preload="none" muted>
+                Ваш браузер не поддерживает видео.
+            </video>
+            <hr>
+            <iframe 
+                width="360" 
+                height="240" 
+                src="/static/videos/fire.mp4"
+                frameborder="0"
+                allowfullscreen
+                allow="autoplay; encrypted-media"
+                title="Видео о нашем музее">
+                Ваш браузер не поддерживает видео.
+            </iframe>
+            <hr>
+            <object 
+                width="360" 
+                height="240" 
+                type="video/mp4"
+                data="/static/videos/hand.mp4">
+                <param name="autoplay" value="true">
+                <param name="controller" value="true">
+                <param name="muted" value="true">
+                Ваш браузер не поддерживает видео.
+            </object>
+            <hr>
+            <embed 
+                width="360" 
+                height="240" 
+                src="/static/videos/robot.mp4"
+                type="video/mp4"
+                autoplay="true"
+                controller="true"
+                muted="true">
+        </div>
+
+        <h2>Аудио нашего музея</h2>
+        <audio controls>
+            <source src="/static/videos/polaroid-camera.mp3">
+            Ваш браузер не поддерживает воспроизведение аудио.
+        </audio>
+        <embed 
+            src="{% static 'videos/polaroid-camera.mp3' %}" 
+            width="300" 
+            height="50" 
+            type="audio/mpeg" />
+        
+        <h2>История музея по годам</h2>
+        <div>
+            <h3>2020</h3>
+            <p>Основание музея. Начало формирования коллекции.</p>
+            
+            <h3>2021</h3>
+            <p>Открытие первых экспозиций. Проведение образовательных программ.</p>
+            
+            <h3>2022</h3>
+            <p>Расширение коллекции. Участие в международных выставках.</p>
+            
+            <h3>2023</h3>
+            <p>Запуск виртуальных туров. Внедрение современных технологий.</p>
+            
+            <h3>2024</h3>
+            <p>Открытие новых залов. Разработка интерактивных экспонатов.</p>
+        </div>
+        
+        <div>
+            <h1>СЕРТИФИКАТ</h1>
+            <h2>Настоящий сертификат выдан компании</h2>
+            <h2><i>"Музей информационных технологий"</i></h2>
+            <p>
+                в том, что организация соответствует международным стандартам качества 
+                и предоставляет услуги высшего уровня в сфере культурно-образовательной деятельности.
+            </p>
+            <p><b>
+                Сертификат действителен с 01 января 2023 года по 31 декабря 2025 года.
+            </b></p>
+            <p>
+                Регистрационный номер: № ITM-2023-001
+            </p>
+            <table width="100%">
+                <tr>
+                    <td width="50%">
+                        <p>Председатель комиссии:</p>
+                        <p>_________________________</p>
+                        <p><em>И.И. Петров</em></p>
+                    </td>
+                    <td width="50%">
+                        <p>Дата выдачи:</p>
+                        <p>15 марта 2023 года</p>
+                        <p>М.П.</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    {% else %}
+        <p>Информация о компании скоро появится.</p>
+    {% endif %}
+</div>
+
+<p><a href="{% url 'main' %}">← Назад на главную</a></p>
+{% endblock %}

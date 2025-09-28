@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Сотрудники музея</title>
+    <link rel="icon" href="/static/images/icon.png" type="image/png">
+</head>
+<body>
+
+    <h2>Сотрудники музея</h2>
+
+    <div>
+        <form method="get">
+            <label for="age">Поиск по возрасту:</label>
+            <input type="number" name="age" id="age" min="18" max="100" value="{{ request.GET.age }}">
+
+            <label for="sort">Сортировать по:</label>
+            <select name="sort" id="sort">
+                <option value="">---</option>
+                <option value="name" {% if request.GET.sort == "name" %}selected{% endif %}>Имени</option>
+                <option value="age" {% if request.GET.sort == "age" %}selected{% endif %}>Возрасту</option>
+            </select>
+
+            <button type="submit">Найти</button>
+        </form>
+    </div>
+
+    <div>
+        {% for employee in employees %}
+        <div>
+            {% if employee.photo %}
+                <img src="{{ employee.photo.url }}" alt="Фото {{ employee.full_name }}" width="120" height="120">
+            {% else %}
+                <img src="{% static 'images/default-avatar.png' %}" alt="Без фото" width="120" height="120">
+            {% endif %}
+            <div><strong>{{ employee.full_name }}</strong></div>
+            <div>{{ employee.position.title }}</div>
+            <div>📞 {{ employee.phone }}</div>
+            <div>📧 {{ employee.email }}</div>
+            <div>{{ employee.bio|truncatewords:20 }}</div>
+            <hr>
+        </div>
+        {% empty %}
+        <p>Сотрудники не найдены.</p>
+        {% endfor %}
+    </div>
+
+    <a href="{% url 'main' %}">← Назад на главную</a>
+
+</body>
+</html>

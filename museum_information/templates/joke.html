@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Шутка о программировании</title>
+    <link rel="icon" href="/static/images/icon.png" type="image/png">
+</head>
+<body>
+
+    <h2>Шутка о программировании</h2>
+
+    <div>
+        <div><strong>{{ joke.setup }}</strong></div>
+        <div>{{ joke.punchline }}</div>
+
+        {% if gif_url %}
+            <div>
+                <img src="{{ gif_url }}" alt="Programming gif">
+            </div>
+        {% endif %}
+
+        <form method="get">
+            <button type="submit">Ещё шутку</button>
+        </form>
+    </div>
+
+    <p><a href="{% url 'main' %}">← Назад на главную</a></p>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+{% load custom_tags %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Админская панель</title>
+</head>
+<body>
+
+<h1>Админская панель</h1>
+
+<h2>Залы</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Этаж</th>
+            <th>Площадь (м²)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for hall in halls %}
+            <tr>
+                <td>{{ hall.name }}</td>
+                <td>{{ hall.floor }}</td>
+                <td>{{ hall.square }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Экспонаты</h2>
+{% if show_new %}
+    <a href="?new=0">Показать все</a>
+{% else %}
+    <a href="?new=1">Показать новые за 6 мес</a>
+{% endif %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Вид искусства</th>
+            <th>Дата поступления</th>
+            <th>Смотрящий (зал)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for exhibit in exhibits %}
+            <tr>
+                <td>{{ exhibit.title }}</td>
+                <td>{{ exhibit.art_type.name }}</td>
+                <td>{{ exhibit.creation_date|date:"d.m.Y" }}</td>
+                <td>
+                    {% if exhibit.hall %}
+                        {{ exhibit.hall.name }}
+                    {% else %}
+                        —
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Поиск сотрудников по этажу</h2>
+<form method="get">
+    <label for="floor">Этаж:</label>
+    <input type="number" id="floor" name="floor" value="{{ floor|default:'' }}" required>
+    <button type="submit">Найти</button>
+</form>
+
+{% if floor %}
+    <h3>Сотрудники, работающие на этаже {{ floor }}</h3>
+    {% if employees %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ФИО</th>
+                    <th>Телефон</th>
+                    <th>Email</th>
+                    <th>Должность</th>
+                    <th>Залы</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                    <tr>
+                        <td>{{ employee.full_name }}</td>
+                        <td>{{ employee.phone }}</td>
+                        <td>{{ employee.email }}</td>
+                        <td>{{ employee.position.title }}</td>
+                        <td>
+                            {% for hall in employee.halls.all %}
+                                {{ hall.name }} (этаж {{ hall.floor }})<br>
+                            {% empty %}
+                                —
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Нет сотрудников, работающих на этом этаже.</p>
+    {% endif %}
+{% endif %}
+
+<h2>Экскурсии по сезонам</h2>
+<div>
+    <a href="?season=лето">Лето</a>
+    <a href="?season=осень">Осень</a>
+    <a href="?season=зима">Зима</a>
+    <a href="?season=весна">Весна</a>
+</div>
+
+<p>Всего экскурсий за выбранный сезон: {{ total_tours }}</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Тематика</th>
+            <th>Начало</th>
+            <th>Окончание</th>
+            <th>Цена билета</th>
+            <th>Сотрудник</th>
+            <th>Количество в группе</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tour in tours %}
+            <tr>
+                <td>{{ tour.title }}</td>
+                <td>{{ tour.topic }}</td>
+                <td>{{ tour.start_time|date:"d.m.Y H:i" }}</td>
+                <td>{{ tour.end_time|date:"d.m.Y H:i" }}</td>
+                <td>{{ tour.ticket_prices }} ₽</td>
+                <td>
+                    {% if tour.responsible_employee %}
+                        {{ tour.responsible_employee.full_name }}
+                    {% else %}
+                        —
+                    {% endif %}
+                </td>
+                <td>{{ tour.group_size }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Залы</h2>
+<form method="get">
+    <label for="date">Показать выставки, начавшиеся после даты:</label>
+    <input type="date" id="date" name="date" value="{{ date_filter }}">
+    <button type="submit">Фильтровать</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Название зала</th>
+            <th>Этаж</th>
+            <th>Площадь (м²)</th>
+            <th>Количество выставок после даты</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for hall in halls %}
+            <tr>
+                <td>{{ hall.name }}</td>
+                <td>{{ hall.floor }}</td>
+                <td>{{ hall.square }}</td>
+                <td>{{ exhibitions_count_by_hall|get_item:hall.id|default:"0" }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<p><a href="{% url 'main' %}">На главную</a></p>
+<p><a href="{% url 'museum_info' %}">Информация о музее</a></p>
+
+</body>
+</html>

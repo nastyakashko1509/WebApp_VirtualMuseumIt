@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Музей информационных технологий{% endblock %}</title>
+    <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+</head>
+<body>
+    <header>
+        <h1><i>- Музей информационных технологий -</i></h1>
+        <img src="{% static 'images/logo.jpg' %}" height="150" width="700">
+        <hr>
+    </header>
+
+    <aside>
+        <br><i>Что вы можете увидеть в нашем музее?</i><br>
+        <img src="{% static 'images/banner/banner1.jpg' %}" height="130" width="130">
+        <img src="{% static 'images/banner/banner2.jpg' %}" height="130" width="130">
+        <img src="{% static 'images/banner/banner3.jpg' %}" height="130" width="130">
+        <img src="{% static 'images/banner/banner4.jpg' %}" height="130" width="130">
+        <img src="{% static 'images/banner/banner5.jpg' %}" height="130" width="130">
+    </aside>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <hr>
+        <em><b>Реквизиты</b></em>
+        <p>Название: Музей информационных технологий</p>
+        <p>УНП: 123456789</p>
+        <p>Расчетный счет: BY00ABCD00000000000000000000</p>
+        <p>Банк: ОАО "Беларусбанк"</p>
+        <address>
+            <p>Юридический адрес: г. Минск, ул. Музейная, 1</p>
+            <p>Электронная почта: <sub><i>museum_it@gmail.com</i></sub></p>
+            <a href="mailto:nastyakashko249@gmail.com?subject=Вопрос">Быстрое смс</a>
+            <p>Телефон: <sub><i>+375 (29) 123-45-67</i></sub></p>
+            <a href="tel:+375291234567">Быстрый звонок</a>
+        </address>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ employee.full_name }}</title>
+</head>
+<body>
+
+<div>
+    {% if employee.photo %}
+        <img src="{{ employee.photo.url }}" alt="Фото {{ employee.full_name }}">
+    {% else %}
+        <img src="{% static 'images/default-avatar.png' %}" alt="Без фото">
+    {% endif %}
+
+    <h1>{{ employee.full_name }}</h1>
+    <div>{{ employee.position.title }}</div>
+    <div>📞 {{ employee.phone }}</div>
+    <div>📧 {{ employee.email }}</div>
+    <div>{{ employee.bio }}</div>
+
+    <a href="{% url 'employee' %}">← Назад ко всем сотрудникам</a>
+</div>
+
+</body>
+</html>

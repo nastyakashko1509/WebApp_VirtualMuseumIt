@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Выбор графика продаж билетов</title>
+    <link rel="icon" href="/static/images/icon.png" type="image/png">
+</head>
+<body>
+
+<h1>Выберите график продаж билетов</h1>
+
+<a href="{% url 'sales_by_age_chart' %}">По возрастным категориям</a><br>
+<a href="{% url 'sales_by_day_type_chart' %}">По типам дней</a><br>
+<a href="{% url 'sales_over_time_chart' %}">По датам</a>
+
+</body>
+</html>

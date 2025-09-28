@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Информация сотрудника</title>
+</head>
+<body>
+
+<h1>Добро пожаловать, {{ employee.full_name }}</h1>
+
+<p>Сегодня: {{ current_date }} (часовой пояс: {{ user_timezone }})</p>
+
+<h2>Календарь текущего месяца:</h2>
+<pre>{{ calendar_text }}</pre>
+
+<h2>Выставки, за которые вы отвечаете:</h2>
+{% if exhibitions %}
+    <ul>
+        {% for exhibition in exhibitions %}
+            <li>
+                <strong>{{ exhibition.title }}</strong> — {{ exhibition.exposition_description }}<br>
+                <small>
+                    Дата начала UTC: {{ exhibition.start_time_utc }}<br>
+                    Дата начала локально: {{ exhibition.start_time_local }}<br>
+                    Дата окончания UTC: {{ exhibition.end_time_utc }}<br>
+                    Дата окончания локально: {{ exhibition.end_time_local }}
+                </small>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Вы пока не закреплены ни за одной выставкой.</p>
+{% endif %}
+
+<h2>Ваши экскурсии:</h2>
+{% if tours_data %}
+    <ul>
+        {% for tour_info in tours_data %}
+            <li>
+                {{ tour_info.tour.title }} ({{ tour_info.tour.topic }})<br>
+                <small>
+                    Начало UTC: {{ tour_info.start_time_utc }}<br>
+                    Начало локально: {{ tour_info.start_time_local }}<br>
+                    Конец UTC: {{ tour_info.end_time_utc }}<br>
+                    Конец локально: {{ tour_info.end_time_local }}
+                </small>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>У вас нет назначенных экскурсий.</p>
+{% endif %}
+
+<div>
+    <a href="{% url 'main' %}">← На главную</a>
+    <a href="{% url 'museum_info' %}">← Информация о музее</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Дэшборд клиента</title>
+</head>
+<body>
+
+<h1>Добро пожаловать, {{ client.full_name }}</h1>
+
+<p>Текущая тайм-зона пользователя: <strong>{{ user_timezone }}</strong></p>
+<p>Текущая дата: <strong>{{ current_date }}</strong></p>
+
+<h2>Календарь текущего месяца</h2>
+<pre>{{ calendar_text }}</pre>
+
+<h2>Активные промокоды</h2>
+{% if promo_codes %}
+    {% for promo in promo_codes %}
+        <div>
+            <strong>{{ promo.code }}</strong><br />
+            {{ promo.description }}<br />
+            <small>Действует до {{ promo.valid_until|date:"d.m.Y" }}</small>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>На данный момент активных промокодов нет.</p>
+{% endif %}
+
+<h2>Купленные билеты</h2>
+{% if client.clientticket_set.exists %}
+    <ul>
+        {% for ct in client.clientticket_set.all %}
+            <li>
+                <strong>{{ ct.ticket.name }}</strong> —
+                {{ ct.ticket.price }} ₽ × {{ ct.quantity }}<br>
+                Куплено: {{ ct.purchased_at|date:"d.m.Y H:i" }}<br>
+                Возрастная категория: {{ ct.ticket.get_visitor_age_display }}<br>
+                Тип дня: {{ ct.ticket.get_day_type_display }}<br>
+                Фото: {% if ct.ticket.photo_permission_fee %}Да{% else %}Нет{% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Вы ещё не покупали билеты.</p>
+{% endif %}
+
+<p><a href="{% url 'main' %}">На главную</a></p>
+<p><a href="{% url 'museum_info' %}">Информация о музее</a></p>
+
+</body>
+</html>

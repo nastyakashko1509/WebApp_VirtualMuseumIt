@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Информация о музее{% endblock %}
+
+{% block content %}
+    <h1>Информация о музее</h1>
+
+    <section class="tour">
+        <h2>Список проводимых экскурсий</h2>
+        <ul class="tour-list">
+            {% for tour in tours %}
+                <li>
+                    <strong>{{ tour.title }}</strong> — {{ tour.topic }}<br>
+                    Время начала: {{ tour.start_time }} — Время окончания: {{ tour.end_time }}<br>
+                    <em>Билеты:</em>
+                    {% if tour.ticket.all %}
+                        <ul>
+                            {% for ticket in tour.ticket.all %}
+                                <li>
+                                    <a href="{% url 'ticket_detail' ticket.pk %}">
+                                        Цена: {{ ticket.price }} руб.<br>
+                                        Возрастная категория: {{ ticket.get_visitor_age_display }}<br>
+                                        Тип дня: {{ ticket.get_day_type_display }}<br>
+                                        Разрешение на фото: {% if ticket.photo_permission_fee %}Да{% else %}Нет{% endif %}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        Нет доступных билетов.
+                    {% endif %}
+                </li>
+            {% empty %}
+                <p>Нет доступных экскурсий.</p>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="hall">
+        <h2>Информация о залах</h2>
+        <ul class="hall-list">
+            {% for hall in halls %}
+                <li><strong>{{ hall.name }}</strong> — Этаж: {{ hall.floor }}</li>
+            {% empty %}
+                <p>Нет информации о залах.</p>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="exhibition">
+        <h2>Выставки</h2>
+        <ul class="exhibition-list">
+            {% for exhibition in exhibitions %}
+                <li>
+                    <strong>{{ exhibition.title }}</strong><br>
+                    Дата начала: {{ exhibition.start_date }}<br>
+                    Дата окончания: {{ exhibition.end_date }}
+                        <p><em>Экспозиции:</em></p>
+                        {% if exhibition.exposition.all %}
+                            <ul>
+                                {% for exposition in exhibition.exposition.all %}
+                                    <li>{{ exposition.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>Нет экспозиций.</p>
+                        {% endif %}
+                    <p><em>Билеты:</em></p>
+                    {% if exhibition.ticket.all %}
+                        <ul>
+                            {% for ticket in exhibition.ticket.all %}
+                                <li>
+                                    <a href="{% url 'ticket_detail' ticket.pk %}">
+                                        Цена: {{ ticket.price }} руб.<br>
+                                        Возрастная категория: {{ ticket.get_visitor_age_display }}<br>
+                                        Тип дня: {{ ticket.get_day_type_display }}<br>
+                                        Разрешение на фото: {% if ticket.photo_permission_fee %}Да{% else %}Нет{% endif %}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>Нет доступных билетов.</p>
+                    {% endif %}
+                </li>
+            {% empty %}
+                <p>Нет текущих выставок.</p>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="exposition">
+        <h2>Экспозиции</h2>
+        <ul class="exposition-list">
+            {% for exposition in expositions %}
+                <li>
+                    <strong>{{ exposition.name }}</strong><br>
+                    {{ exposition.description }}
+                    <div class="exhibits">
+                        {% for exhibit in exposition.exhibits.all %}
+                            <div class="exhibit"> 
+                                {% if exhibit.photo %} 
+                                    <img src="{{ exhibit.photo.url }}" alt="{{ exhibit.title }}" width="100" height="100"> 
+                                {% endif %} 
+                                <p><strong>{{ exhibit.title }}</strong><br>{{ exhibit.description }}</p> 
+                            </div>
+                        {% endfor %}
+                    </div>
+                </li>
+            {% empty %}
+                <p>Нет текущих экспозиций.</p>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="promo">
+        <h2>Промокоды и скидки</h2>
+        <ul class="promo-list">
+            {% for promo in promo_codes %}
+                <li><strong>{{ promo.code }}</strong> — {{ promo.description }}<br>
+                    Действует до: {{ promo.valid_until }}<br>
+                    Статус: {% if promo.is_active %}Активен{% else %}Неактивен{% endif %}
+                </li>
+            {% empty %}
+                <p>Нет доступных промокодов.</p>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="partners">
+        <h2>Наши партнеры</h2>
+        <div class="partners-list">
+            {% for partner in partners %}
+                <div class="partner">
+                    {% if partner.photo_logo %}
+                        <img src="{{ partner.photo_logo.url }}" alt="{{ partner.name }}" width="150" height="100">
+                    {% endif %}
+                    <h3>{{ partner.name }}</h3>
+                    {% if partner.website %}
+                        <a href="{{ partner.website }}" target="_blank" rel="noopener noreferrer">
+                            Посетить сайт
+                        </a>
+                        <hr>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <p>У нас пока нет партнеров.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <a href="{% url 'home' %}">← Назад на главную</a>
+{% endblock %}

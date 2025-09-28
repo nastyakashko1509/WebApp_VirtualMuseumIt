@@ -1,0 +1,290 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Дополнительная страница</title>
+</head>
+<body>
+    <hgroup>
+        <h1 dir="auto" lang="en" translate="yes">
+            <a id="start"></a>
+            My cart
+        </h1>
+
+        <h2 dir="ltr" lang="ru" 
+            contenteditable
+            spellcheck="true">"Моя карзина"</h2>
+
+        <h3 dir="rtl" lang="be">"Мой кошык"</h3>
+    </hgroup>
+
+    <hr>
+    <p>
+        <code>
+            var mood = ["good", "bad"];<br>
+            document.writeln("I have " + mood[1] + " mood");
+        </code>
+    </p>
+    <p>Имя списка (переменной): <var>mood</var></p>
+    <p>Результат работы программы: <samp>I have bad mood</samp></p>
+    <p>Пользователь ввёл: <kbd>bad</kbd>
+
+    <hr>
+    <h3>Оформление аббревиатур</h3>
+    <abbr title="Белорусский государственный университет информатики и радиоэлектроники">БГУИР</abbr>
+
+    <hr>
+    <h3>Оформление определений</h3>
+    <dfn title="определение">Учёба</dfn> - это то, что позволяет развиваться и уставать одновременно.
+
+    <hr>
+    <h3>Оформление цитат</h3>
+    <q cite="https://www.forbes.ru/forbeslife/dosug/262327-na-vse-vremena-100-vdokhnovlyayushchikh-tsitat">
+        Что разум человека может постигнуть и во что он может поверить, того он способен достичь
+    </q>
+    <blockquote cite="https://www.forbes.ru/forbeslife/dosug/262327-na-vse-vremena-100-vdokhnovlyayushchikh-tsitat">
+        Что разум человека может постигнуть и во что он может поверить, того он способен достичь
+    </blockquote>
+    <p>Данная цитата взята на сайте <cite>Forbes</cite>.</p>
+
+    <hr>
+    <mark>Выделенный текст</mark>
+
+    <hr>
+    <p>Это <span style="color: red;">слово</span> выделено красным цветом.</p>
+
+    <hr>
+    <h3>Оформление четверостишия</h3>
+    И труд нелеп, и бестолкова праздность,<br>
+    И с плеч долой всё та же голова,<br>
+    Когда приходит бешеная ясность,<br>
+    Насилуя притихшие слова.
+
+    <hr>
+    <h3>Картинка-ссылка</h3>
+    <a href="https://ru.freepik.com/photos/море" target="_blank" hreflang="ru" type="image/png">
+        <img src="{% static 'images/sea.jpg' %}" height="150" width="150">
+    </a>
+
+    <hr>
+    <h3>Скачивание документа(ов) по ссылке</h3>
+    <a href="{% static 'images/mountains.png' %}" download>
+        <img src="{% static 'images/mountains.png' %}" width="150">
+    </a>
+
+    <hr>
+    <h3>Переход в начало страницы</h3>
+    <a href="#start">Перейти!</a>
+
+    <hr>
+    <h3>Форматированный текст</h3>
+    <pre>
+        И труд нелеп , и бестолкова праздность,
+
+        И с плеч долой всё та же голова,
+
+        Когда приходит бешеная ясность ,
+
+        Насилуя притихшие слова .
+    </pre>
+
+    <hr color="yellow">
+    <h3>Сверху отрисована разноцветная линия, color - устаревший атрибут!</h3>
+
+    <hr>
+    <h3>Список определений</h3>
+    <dl>
+        <dt>Мама</dt>
+        <dd>- это шея</dd>
+        <dd>- это любовь и забота</dd>
+
+        <dt>Папа</dt>
+        <dd>- это голова</dd>
+        <dd>- это защита и опора</dd>
+    </dl>
+
+    <hr>
+    <h3>Фигуры - способ группировки объектов</h3>
+    <figure>
+        Реборны - это куклы, которые невозможно отличить от настоящего малыша!<br>
+        <img src="{% static 'images/reborn.jpg' %}" width="150">
+        <figcaption>Кукла "Реборн"</figcaption>
+    </figure>
+
+    <hr>
+    <h3>Семантические секции</h3>
+    <section>
+        <h4>Введение</h4>
+        <article>
+            <p>Законченная статья</p>
+        </article>
+    </section>
+    <section>
+        <h4>Основная часть</h4>
+        <article>
+            <p>Законченная статья</p>
+        </article>
+    </section>
+
+    <hr>
+    <h3>Таблицы</h3>
+    <table Summary="Краткое описание (не отображается)"
+           cellpadding="5"
+           cellspacing="5">
+        <caption>Заголовок таблицы</caption>   
+        <thead>
+            <tr>
+                <th>Шапка</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td>Подвал</td>
+            </tr>
+        </tfoot>
+        <tr>
+            <th>Номер</th>
+            <th>Пол</th>
+            <th>Имя</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Ж</td>
+            <td>Анастасия</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Ж</td>
+            <td>Влада</td>
+        </tr>
+    </table>
+
+    <table cellpadding="5"
+           cellspacing="5">
+        <tr>
+            <th>Номер</th>
+            <th>Пол</th>
+            <th>Имя</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td colspan="2">Анастасия</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Ж</td>
+            <td>Влада</td>
+        </tr>
+    </table>
+
+    <table cellpadding="5"
+           cellspacing="5">
+        <tr>
+            <th>Номер</th>
+            <th>Пол</th>
+            <th>Имя</th>
+        </tr>
+        <tr>
+            <td rowspan="2">1, 2</td>
+            <td>Ж</td>
+            <td>Анастасия</td>
+        </tr>
+        <tr>
+            <td>Ж</td>
+            <td>Влада</td>
+        </tr>
+    </table>
+
+    <table cellpadding="5"
+           cellspacing="5"
+           border="1">
+        <tr>
+            <th>Номер</th>
+            <th>Пол</th>
+            <th>Имя</th>
+        </tr>
+        <tr>
+            <td rowspan="2">1</td>
+            <td>Ж</td>
+            <td>Анастасия</td>
+        </tr>
+        <tr>
+            <td rowspan="3">Влада</td>
+        </tr>
+    </table>
+
+    <table cellpadding="5"
+           cellspacing="5">
+        <tr>
+            <th id="number">Номер</th>
+            <th id="sex">Пол</th>
+            <th id="name">Имя</th>
+        </tr>
+        <tr>
+            <td id="first" headers="number">1</td>
+            <td headers="sex first">Ж</td>
+            <td headers="name first">Анастасия</td>
+        </tr>
+        <tr>
+            <td id="second" headers="number">2</td>
+            <td headers="sex second">Ж</td>
+            <td headers="name second">Влада</td>
+        </tr>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+            <th id="col_number">Номер</th>
+            <th id="col_sex">Пол</th>
+            <th id="col_name">Имя</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td headers="col_number">1</td>
+            <td headers="col_sex">Ж</td>
+            <td headers="col_name">Анастасия</td>
+            </tr>
+            <tr>
+            <td headers="col_number">2</td>
+            <td headers="col_sex">Ж</td>
+            <td headers="col_name">Влада</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <h3>Элементы управления (радиокнопки)</h3>
+    День недели:<br>
+    <form>
+        <input type="radio" checked> понедельник<br>
+        <input type="radio"> вторник<br>
+        <input type="radio"> среда<br>
+        <input type="radio"checked> четверг<br>
+        <input type="radio"> пятница<br>
+        <input type="radio"> суббота<br>
+        <input type="radio" checked> воскресенье<br>
+
+        <input type="reset" value="Очистить">
+    </form>
+
+    <hr>
+    <h3>Адаптивные изображения</h3>
+    <img 
+        src="{% static 'images/palm.jpg' %}" 
+        srcset="{% static 'images/palm.jpg' %} 480w, 
+                {% static 'images/palm.jpg' %} 800w, 
+                {% static 'images/palm.jpg' %} 1200w">
+
+    <p><a href="{% url 'home' %}">← Вернуться назад</a></p>
+
+    <hr>
+    <h3>Использование фреймов</h3>
+    <iframe name="window" width="200" height="200">Настроение поднять!</iframe>
+    <a href="{% static 'images/good_mood.jpg' %}" target="window">Мотивацию поднять!</a>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация сотрудника</title>
+    <link rel="icon" href="/static/images/icon.png" type="image/png">
+</head>
+<body>
+
+<h2>Регистрация сотрудника музея</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% if error %}
+        <div>{{ error }}</div>
+    {% endif %}
+
+    <label>Имя пользователя:</label>
+    <input type="text" name="username" required value="{{ form_values.username|default:'' }}">
+
+    <label>Пароль:</label>
+    <input type="password" name="password" required>
+
+    <label>Почта:</label>
+    <input type="email" name="email" value="{{ form_values.email|default:'' }}">
+
+    <label>ФИО:</label>
+    <input type="text" name="full_name" required value="{{ form_values.full_name|default:'' }}">
+
+    <label>Дата рождения:</label>
+    <input type="date" name="date_of_birth" required value="{{ form_values.date_of_birth|default:'' }}">
+
+    <label>Телефон:</label>
+    <input type="text" name="phone" value="{{ form_values.phone|default:'' }}">
+
+    <label>О себе:</label>
+    <textarea name="bio" rows="4">{{ form_values.bio|default:'' }}</textarea>
+
+    <label>Фото:</label>
+    <input type="file" name="photo">
+
+    <button type="submit">Зарегистрироваться</button>
+</form>
+
+<p><a href="{% url 'home' %}">← Вернуться на главную</a></p>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<meta name="description" content="Сайт музея информационных технологий">
+<meta name="author" content="Анастасия">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Refresh" content="5">
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<h1>Добро пожаловать!</h1>
+
+<p>Не потеряй возможность окунуться в мир чудес! Побывай в музее информационных технологий и узнай, что ждёт тебя в будущем!</p>
+
+<div>
+    <hr>
+        <a href="{% url 'additional_page' %}">Дополнительная страница</a> 
+    <hr>
+    <nav>
+        <a href="{% url 'register_client' %}">Зарегистрироваться (клиент)</a> | 
+        <a href="{% url 'register_employee' %}">Зарегистрироваться (сотрудник)</a> | 
+        <a href="{% url 'login' %}">Войти</a><br>
+    </nav>
+    <hr>
+    <a href="{% url 'museum_info' %}">Вся информация о музее</a><br>
+    <a href="{% url 'main' %}">Главная страница</a><br>
+    <a href="{% url 'statistics' %}">Статистика</a><br>
+    <a href="{% url 'sales_charts_page' %}">Графики продаж билетов</a><br>
+    <hr>
+    <a href="/admin/login/">Войти в админпанель</a><br>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Промокоды и купоны</title>
+    <link rel="icon" href="/static/images/icon.png" type="image/png">
+</head>
+<body>
+
+<h1>Промокоды и купоны</h1>
+
+<div>
+    <h2>Действующие промокоды</h2>
+    {% if active_codes %}
+        {% for promo in active_codes %}
+            <div>
+                <strong>{{ promo.code }}</strong><br>
+                <span>{{ promo.description }}</span><br>
+                <small>Действует до: {{ promo.valid_until|date:"d.m.Y" }}</small>
+                <hr>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Нет действующих промокодов.</p>
+    {% endif %}
+</div>
+
+<div>
+    <h2>Архив промокодов</h2>
+    {% if archived_codes %}
+        {% for promo in archived_codes %}
+            <div>
+                <strong>{{ promo.code }}</strong><br>
+                <span>{{ promo.description }}</span><br>
+                <small>Истёк: {{ promo.valid_until|date:"d.m.Y" }}</small>
+                <hr>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Архив пуст.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>

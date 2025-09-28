@@ -1,0 +1,50 @@
+<!DOCTYPE html> 
+<html lang="ru"> 
+
+<head> 
+    <meta charset="UTF-8"> 
+    <title>Словарь терминов и понятий (FAQ)</title> 
+    <link rel="icon" href="/static/images/icon.png" type="image/png"> 
+</head> 
+
+<body> 
+    <h1>Вопросы и ответы</h1> 
+    
+    <div> 
+        {% for faq in faqs %} 
+            <div> 
+                <strong>{{ faq.question }}</strong><br> 
+                {% if faq.answer %} 
+                    <details>
+                        <summary>
+                            {% if faq.answer|length > 20 %}
+                                {{ faq.answer|slice:":20" }}...
+                            {% else %}
+                                {{ faq.answer }}
+                            {% endif %}
+                        </summary>
+                        <p>{{ faq.answer|linebreaks }}</p>
+                    </details>
+                {% else %} 
+                    <p><em>Ответ пока не дан</em></p> 
+                {% endif %} 
+                <small>Добавлено: {{ faq.added_date|date:"d.m.Y" }}</small> 
+                <hr> 
+            </div> 
+        {% empty %} 
+            <p>Пока вопросов нет.</p> 
+        {% endfor %} 
+    </div> 
+    
+    <form method="post" action="{% url 'faq_list' %}"> 
+        {% csrf_token %} 
+        <label for="question">Задайте ваш вопрос:</label>
+        <br> 
+        <textarea name="question" id="question" required rows="5" cols="50"></textarea>
+        <br>
+        <button type="submit">Отправить вопрос</button> 
+    </form> 
+    
+    <p><a href="{% url 'main' %}">← Назад на главную</a></p> 
+</body> 
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Отзывы посетителей</title>
+    <link rel="icon" href="/static/images/icon.png" type="image/png">
+</head>
+<body>
+
+<h1>Отзывы посетителей</h1>
+
+<div>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="user" placeholder="Ваше имя (необязательно)">
+        <br>
+        <textarea name="text" placeholder="Ваш отзыв..." rows="4" required></textarea>
+        <br>
+        <label>Оценка:</label>
+        <label><input type="radio" name="rating" value="1" required>1</label>
+        <label><input type="radio" name="rating" value="2">2</label>
+        <label><input type="radio" name="rating" value="3">3</label>
+        <label><input type="radio" name="rating" value="4">4</label>
+        <label><input type="radio" name="rating" value="5">5</label>
+        <br>
+        <input type="submit" value="Отправить">
+    </form>
+</div>
+
+<div>
+    {% if reviews %}
+        {% for review in reviews %}
+            <div>
+                <h3>{{ review.author.username }}</h3>
+                <p>{{ review.text }}</p>
+                <p>Оценка: {{ review.rating }}/5</p>
+                <hr>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Пока нет ни одного отзыва.</p>
+    {% endif %}
+</div>
+
+<p><a href="{% url 'main' %}">← Назад на главную</a></p>
+
+</body>
+</html>
