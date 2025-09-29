@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Промокоды и купоны</title>
-    <link rel="icon" href="/static/images/icon.png" type="image/png">
-</head>
-<body>
+{% extends "base.html" %}
 
+{% block title %}Промокоды и купоны{% endblock %}
+
+{% block content %}
 <h1>Промокоды и купоны</h1>
 
 <div>
@@ -40,6 +36,4 @@
         <p>Архив пуст.</p>
     {% endif %}
 </div>
-
-</body>
-</html>
+{% endblock %}

@@ -6,31 +6,53 @@
     <meta charset="UTF-8">
     <title>{% block title %}Музей информационных технологий{% endblock %}</title>
     <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'layout.css' %}">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
 </head>
 <body>
-    <header>
-        <h1><i>- Музей информационных технологий -</i></h1>
+    <header class="layout">
+        <h1>- Музей информационных технологий -</h1>
         <img src="{% static 'images/logo.jpg' %}" height="150" width="700">
+        <br>
+        <img src="{% static 'images/banner/banner1.jpg' %}">
+        <img src="{% static 'images/banner/banner2.jpg' %}">
+        <img src="{% static 'images/banner/banner3.jpg' %}">
+        <img src="{% static 'images/banner/banner4.jpg' %}">
+        <img src="{% static 'images/banner/banner5.jpg' %}">
         <hr>
     </header>
 
-    <aside>
-        <br><i>Что вы можете увидеть в нашем музее?</i><br>
-        <img src="{% static 'images/banner/banner1.jpg' %}" height="130" width="130">
-        <img src="{% static 'images/banner/banner2.jpg' %}" height="130" width="130">
-        <img src="{% static 'images/banner/banner3.jpg' %}" height="130" width="130">
-        <img src="{% static 'images/banner/banner4.jpg' %}" height="130" width="130">
-        <img src="{% static 'images/banner/banner5.jpg' %}" height="130" width="130">
-    </aside>
+    <div class="content-wrapper">
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
 
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
+        <aside>
+            <a href="{% url 'home' %}">Главная</a><br>
+            <a href="{% url 'about' %}">О музее</a><br>
+            <a href="{% url 'news_list' %}">Новости</a><br>
+            <a href="{% url 'vacancies' %}">Вакансии</a><br>
+            <a href="{% url 'employee' %}">Сотрудники</a><br>
+            <a href="{% url 'reviews' %}">Отзывы</a><br>
+            <a href="{% url 'faq_list' %}">Вопросы</a><br>
+            <a href="{% url 'promocodes' %}">Промокоды</a><br>
+            <a href="{% url 'museum_info' %}">Полезная информация</a><br>
+            <a href="{% url 'privacy_policy' %}">Политика конфиденциальности</a><br>
+            <a href="{% url 'statistics' %}" target="_blank">Статистика</a><br>
+            <a href="{% url 'sales_charts_page' %}" target="_blank">Графики</a><br>
+            <a href="{% url 'joke' %}"target="_blank">Шутки</a><br>
+            <a href="{% url 'additional_page' %}" target="_blank">Дополнительная страница</a><br>
+            <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Выйти</button>
+            </form>
+        </aside>
+    </div>
 
-    <footer>
+    <footer class="layout">
         <hr>
-        <em><b>Реквизиты</b></em>
+        <h3 id="details">Реквизиты</h2>
         <p>Название: Музей информационных технологий</p>
         <p>УНП: 123456789</p>
         <p>Расчетный счет: BY00ABCD00000000000000000000</p>

@@ -1,0 +1,72 @@
+.content-wrapper {
+    display: flex;
+    align-items: stretch; 
+    min-height: 100vh; 
+}
+
+aside {
+    width: 220px;
+    background-color: rgb(185, 212, 234);
+    padding: 15px;
+    border-left: 2px solid rgb(185, 212, 234);
+    order: 2;
+}
+
+aside a, 
+aside form, 
+aside button {
+    background-color: rgb(185, 212, 234);
+}
+
+header, 
+header > h1 {
+    text-align: center;
+    background-color: rgb(185, 212, 234);
+}
+
+footer, 
+footer p, 
+footer address, 
+footer em b, 
+footer sub i, 
+footer a, 
+footer h3 {
+    background-color: rgb(185, 212, 234);
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+    order: 1;
+}
+
+a {
+    color: #0056b3;
+}
+
+a[target="_blank"] {
+    color: purple;
+}
+
+a[href^="mailto"], a[href^="tel"] {
+    color: purple;
+}
+
+img[src*="banner"] {
+    height: 200px;
+    width: 200px;
+}
+
+img[src$=".jpg"] {
+    border: 3px solid purple;  
+}
+
+h1.layout, h2.layout {
+    text-align: center;
+    font-weight: 1000;
+}
+
+footer h3#details {
+    font-style: italic;
+    color: purple;
+}

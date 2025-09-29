@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Регистрация сотрудника</title>
-    <link rel="icon" href="/static/images/icon.png" type="image/png">
-</head>
-<body>
+{% extends "base.html" %}
 
+{% block title %}Регистрация сотрудника{% endblock %}
+
+{% block content %}
 <h2>Регистрация сотрудника музея</h2>
 
 <form method="post" enctype="multipart/form-data">
@@ -17,33 +13,29 @@
     {% endif %}
 
     <label>Имя пользователя:</label>
-    <input type="text" name="username" required value="{{ form_values.username|default:'' }}">
+    <input type="text" name="username" required value="{{ form_values.username|default:'' }}"><br>
 
     <label>Пароль:</label>
-    <input type="password" name="password" required>
+    <input type="password" name="password" required"><br>
 
     <label>Почта:</label>
-    <input type="email" name="email" value="{{ form_values.email|default:'' }}">
+    <input type="email" name="email" value="{{ form_values.email|default:'' }}"><br>
 
     <label>ФИО:</label>
-    <input type="text" name="full_name" required value="{{ form_values.full_name|default:'' }}">
+    <input type="text" name="full_name" required value="{{ form_values.full_name|default:'' }}"><br>
 
     <label>Дата рождения:</label>
-    <input type="date" name="date_of_birth" required value="{{ form_values.date_of_birth|default:'' }}">
+    <input type="date" name="date_of_birth" required value="{{ form_values.date_of_birth|default:'' }}"><br>
 
     <label>Телефон:</label>
-    <input type="text" name="phone" value="{{ form_values.phone|default:'' }}">
+    <input type="text" name="phone" value="{{ form_values.phone|default:'' }}"><br>
 
     <label>О себе:</label>
-    <textarea name="bio" rows="4">{{ form_values.bio|default:'' }}</textarea>
+    <textarea name="bio" rows="4">{{ form_values.bio|default:'' }}</textarea><br>
 
     <label>Фото:</label>
-    <input type="file" name="photo">
+    <input type="file" name="photo"><br>
 
     <button type="submit">Зарегистрироваться</button>
 </form>
-
-<p><a href="{% url 'home' %}">← Вернуться на главную</a></p>
-
-</body>
-</html>
+{% endblock %}

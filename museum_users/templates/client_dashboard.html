@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8" />
-    <title>Дэшборд клиента</title>
-</head>
-<body>
+{% extends "base.html" %}
 
+{% block title %}Дэшборд клиента{% endblock %}
+
+{% block content %}
 <h1>Добро пожаловать, {{ client.full_name }}</h1>
 
 <p>Текущая тайм-зона пользователя: <strong>{{ user_timezone }}</strong></p>
@@ -32,7 +29,7 @@
     <ul>
         {% for ct in client.clientticket_set.all %}
             <li>
-                <strong>{{ ct.ticket.name }}</strong> —
+                <strong>{{ ct.ticket.name }}</strong> — 
                 {{ ct.ticket.price }} ₽ × {{ ct.quantity }}<br>
                 Куплено: {{ ct.purchased_at|date:"d.m.Y H:i" }}<br>
                 Возрастная категория: {{ ct.ticket.get_visitor_age_display }}<br>
@@ -44,9 +41,4 @@
 {% else %}
     <p>Вы ещё не покупали билеты.</p>
 {% endif %}
-
-<p><a href="{% url 'main' %}">На главную</a></p>
-<p><a href="{% url 'museum_info' %}">Информация о музее</a></p>
-
-</body>
-</html>
+{% endblock %}

@@ -6,28 +6,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Refresh" content="5">
 
-{% block title %}Главная{% endblock %}
 
 {% block content %}
-<h1>Добро пожаловать!</h1>
+<h2>Добро пожаловать!</h2>
 
 <p>Не потеряй возможность окунуться в мир чудес! Побывай в музее информационных технологий и узнай, что ждёт тебя в будущем!</p>
 
 <div>
-    <hr>
-        <a href="{% url 'additional_page' %}">Дополнительная страница</a> 
-    <hr>
     <nav>
         <a href="{% url 'register_client' %}">Зарегистрироваться (клиент)</a> | 
         <a href="{% url 'register_employee' %}">Зарегистрироваться (сотрудник)</a> | 
-        <a href="{% url 'login' %}">Войти</a><br>
+        <a href="{% url 'login' %}">Войти</a> |
+        <a href="/admin/login/">Войти в админпанель</a>
     </nav>
-    <hr>
-    <a href="{% url 'museum_info' %}">Вся информация о музее</a><br>
-    <a href="{% url 'main' %}">Главная страница</a><br>
-    <a href="{% url 'statistics' %}">Статистика</a><br>
-    <a href="{% url 'sales_charts_page' %}">Графики продаж билетов</a><br>
-    <hr>
-    <a href="/admin/login/">Войти в админпанель</a><br>
+</div>
+<div>
+    {% if last_news %}
+        <h3>{{ last_news.title }}</h3>
+        <p>{{ last_news.short_description }}</p>
+        {% if last_news.image %}
+            <img src="{{ last_news.image.url }}" alt="Изображение новости" height="200" width="200">
+        {% endif %}
+        <p>{{ last_news.content }}</p>
+        <div>Опубликовано: {{ last_news.published_at|date:"d.m.Y H:i" }}</div>
+    {% else %}
+        <p>Новостей пока нет.</p>
+    {% endif %}
 </div>
 {% endblock %}

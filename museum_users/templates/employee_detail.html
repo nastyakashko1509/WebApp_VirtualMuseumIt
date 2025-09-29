@@ -1,12 +1,9 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ employee.full_name }}</title>
-</head>
-<body>
 
+{% block title %}{{ employee.full_name }}{% endblock %}
+
+{% block content %}
 <div>
     {% if employee.photo %}
         <img src="{{ employee.photo.url }}" alt="Фото {{ employee.full_name }}">
@@ -22,6 +19,4 @@
 
     <a href="{% url 'employee' %}">← Назад ко всем сотрудникам</a>
 </div>
-
-</body>
-</html>
+{% endblock %}

@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Вход</title>
-</head>
-<body>
+{% extends "base.html" %}
 
+{% block title %}Вход{% endblock %}
+
+{% block content %}
 <h2>Вход в виртуальный музей</h2>
 
 <form method="post">
@@ -13,6 +10,4 @@
     {{ form.as_p }}
     <button type="submit">Войти</button>
 </form>
-
-</body>
-</html>
+{% endblock %}

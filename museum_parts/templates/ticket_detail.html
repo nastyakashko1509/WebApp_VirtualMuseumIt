@@ -1,27 +1,24 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Информация о билете</title>
-</head>
-<body>
-    <h1>Информация о билете</h1>
+{% extends "base.html" %}
 
-    <p><strong>Название:</strong> {{ ticket.name }}</p>
-    <p><strong>Цена:</strong> {{ ticket.price }} ₽</p>
-    <p><strong>Возрастная категория:</strong> {{ ticket.get_visitor_age_display }}</p>
-    <p><strong>Тип дня:</strong> {{ ticket.get_day_type_display }}</p>
-    <p><strong>Разрешение на фото:</strong> {% if ticket.photo_permission_fee %}Да{% else %}Нет{% endif %}</p>
+{% block title %}Информация о билете{% endblock %}
 
-    {% if user.is_authenticated and user.museum_client %}
-        <form action="{% url 'add_to_cart' ticket.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Добавить в корзину</button>
-        </form>
-    {% else %}
-        <p>Только зарегистрированные клиенты могут покупать билеты.</p>
-    {% endif %}
+{% block content %}
+<h1>Информация о билете</h1>
 
-    <p><a href="{% url 'museum_info' %}">← Назад на главную</a></p>
-</body>
-</html>
+<p><strong>Название:</strong> {{ ticket.name }}</p>
+<p><strong>Цена:</strong> {{ ticket.price }} ₽</p>
+<p><strong>Возрастная категория:</strong> {{ ticket.get_visitor_age_display }}</p>
+<p><strong>Тип дня:</strong> {{ ticket.get_day_type_display }}</p>
+<p><strong>Разрешение на фото:</strong> {% if ticket.photo_permission_fee %}Да{% else %}Нет{% endif %}</p>
+
+{% if user.is_authenticated and user.museum_client %}
+    <form action="{% url 'add_to_cart' ticket.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Добавить в корзину</button>
+    </form>
+{% else %}
+    <p>Только зарегистрированные клиенты могут покупать билеты.</p>
+{% endif %}
+
+<p><a href="{% url 'museum_info' %}">← Назад на главную</a></p>
+{% endblock %}

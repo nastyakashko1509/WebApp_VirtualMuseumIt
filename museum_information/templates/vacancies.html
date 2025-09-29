@@ -1,26 +1,17 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Вакансии музея</title>
-    <link rel="icon" href="/static/images/icon.png" type="image/png">
-</head>
-<body>
+{% extends "base.html" %}
 
-    <h1>Вакансии музея</h1>
+{% block title %}Вакансии музея{% endblock %}
 
-    {% if positions %}
-        {% for position in positions %}
-            <hr>
-            <h2>{{ position.title }}</h2>
-            <p>{{ position.description|linebreaks }}</p>
-        {% endfor %}
-    {% else %}
-        <p>Вакансий пока нет.</p>
-    {% endif %}
+{% block content %}
+<h1>Вакансии музея</h1>
 
-    <br><br>
-    <a href="{% url 'main' %}">← Назад на главную</a>
-
-</body>
-</html>
+{% if positions %}
+    {% for position in positions %}
+        <hr>
+        <h2>{{ position.title }}</h2>
+        <p>{{ position.description|linebreaks }}</p>
+    {% endfor %}
+{% else %}
+    <p>Вакансий пока нет.</p>
+{% endif %}
+{% endblock %}

@@ -1,30 +1,22 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Шутка о программировании</title>
-    <link rel="icon" href="/static/images/icon.png" type="image/png">
-</head>
-<body>
+{% extends "base.html" %}
 
-    <h2>Шутка о программировании</h2>
+{% block title %}Шутка о программировании{% endblock %}
 
-    <div>
-        <div><strong>{{ joke.setup }}</strong></div>
-        <div>{{ joke.punchline }}</div>
+{% block content %}
+<h2>Шутка о программировании</h2>
 
-        {% if gif_url %}
-            <div>
-                <img src="{{ gif_url }}" alt="Programming gif">
-            </div>
-        {% endif %}
+<div>
+    <div><strong>{{ joke.setup }}</strong></div>
+    <div>{{ joke.punchline }}</div>
 
-        <form method="get">
-            <button type="submit">Ещё шутку</button>
-        </form>
-    </div>
+    {% if gif_url %}
+        <div>
+            <img src="{{ gif_url }}" alt="Programming gif">
+        </div>
+    {% endif %}
 
-    <p><a href="{% url 'main' %}">← Назад на главную</a></p>
-
-</body>
-</html>
+    <form method="get">
+        <button type="submit">Ещё шутку</button>
+    </form>
+</div>
+{% endblock %}

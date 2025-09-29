@@ -279,12 +279,12 @@
                 {% static 'images/palm.jpg' %} 800w, 
                 {% static 'images/palm.jpg' %} 1200w">
 
-    <p><a href="{% url 'home' %}">← Вернуться назад</a></p>
-
     <hr>
     <h3>Использование фреймов</h3>
     <iframe name="window" width="200" height="200">Настроение поднять!</iframe>
     <a href="{% static 'images/good_mood.jpg' %}" target="window">Мотивацию поднять!</a>
+
+    <p><a href="{% url 'home' %}">← Вернуться на главную</a></p>
 
 </body>
 </html>

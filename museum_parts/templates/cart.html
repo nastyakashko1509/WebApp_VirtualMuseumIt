@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Корзина</title>
-</head>
-<body>
+{% extends "base.html" %}
 
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
 <h1>Моя корзина</h1>
 
 {% if cart_items %}
@@ -43,35 +40,6 @@
             tabindex="-1">Оплатить</button>
 </form>
 
-<hr>
-<h1 dir="auto" lang="en" translate="yes">My cart</h1>
-
-<h2 dir="ltr" lang="ru" 
-    contenteditable
-    spellcheck="true">"Моя карзина"</h2>
-
-<h3 dir="rtl" lang="be">"Мой кошык"</h3>
-
-<hr>
-<p>
-    <code>
-        var mood = ["good", "bad"];<br>
-        document.writeln("I have " + mood[1] + " mood");
-    </code>
-</p>
-<p>Имя списка (переменной): <var>mood</var></p>
-<p>Результат работы программы: <samp>I have bad mood</samp></p>
-<p>Пользователь ввёл: <kbd>bad</kbd>
-
-<hr>
-<h3>Оформление аббревиатур</h3>
-<abbr title="Белорусский государственный университет информатики и радиоэлектроники">БГУИР</abbr>
-
-<hr>
-<h3>Оформление определений</h3>
-<dfn title="определение">Учёба</dfn> - это то, что позволяет развиваться и уставать одновременно.
-
 <p><a href="{% url 'museum_info' %}"
       tabindex="1">← Вернуться назад</a></p>
-</body>
-</html>
+{% endblock %}

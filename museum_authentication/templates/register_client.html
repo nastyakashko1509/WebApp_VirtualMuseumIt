@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Регистрация клиента</title>
-    <link rel="icon" href="/static/images/icon.png" type="image/png">
-</head>
-<body>
+{% extends "base.html" %}
 
+{% block title %}Регистрация клиента{% endblock %}
+
+{% block content %}
 <h2>Регистрация клиента музея</h2>
 
 <form method="post">
@@ -32,12 +28,8 @@
     <input type="date" name="date_of_birth" required value="{{ form_values.date_of_birth|default:'' }}"><br><br>
 
     <label>Номер телефона:</label>
-    <input type="phone" name="phone" required value="{{ form_values.phone_number|default:'' }}"><br><br>
+    <input type="tel" name="phone" required value="{{ form_values.phone_number|default:'' }}"><br><br>
 
     <button type="submit">Зарегистрироваться</button>
 </form>
-
-<a href="{% url 'home' %}">← Вернуться на главную</a>
-
-</body>
-</html>
+{% endblock %}

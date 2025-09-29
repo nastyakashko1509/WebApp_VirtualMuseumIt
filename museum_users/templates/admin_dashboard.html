@@ -1,12 +1,9 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 {% load custom_tags %}
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Админская панель</title>
-</head>
-<body>
 
+{% block title %}Админская панель{% endblock %}
+
+{% block content %}
 <h1>Админская панель</h1>
 
 <h2>Залы</h2>
@@ -176,9 +173,4 @@
         {% endfor %}
     </tbody>
 </table>
-
-<p><a href="{% url 'main' %}">На главную</a></p>
-<p><a href="{% url 'museum_info' %}">Информация о музее</a></p>
-
-</body>
-</html>
+{% endblock %}

@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Оплата</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Оплата{% endblock %}
+
+{% block content %}
 <h1>Оплата</h1>
 
 <p>Баланс клиента: {{ client.money }} ₽</p>
@@ -27,5 +25,4 @@
 {% endif %}
 
 <p><a href="{% url 'cart_view' %}">← Вернуться в корзину</a></p>
-</body>
-</html>
+{% endblock %}

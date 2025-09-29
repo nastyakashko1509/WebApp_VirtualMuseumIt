@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Статистика продаж</title>
-</head>
-<body>
+{% extends "base.html" %}
 
+{% block title %}Статистика продаж{% endblock %}
+
+{% block content %}
 <h2>Статистика продаж</h2>
 
 <div>
@@ -39,10 +36,5 @@
         <p>Наиболее популярный тип билета: {{ most_popular_ticket_type }}</p>
         <p>Тип билета с наибольшей прибылью: {{ most_profitable_type }}</p>
     </div>
-
 </div>
-
-<p><a href="{% url 'home' %}">← Назад на главную</a></p>
-
-</body>
-</html>
+{% endblock %}

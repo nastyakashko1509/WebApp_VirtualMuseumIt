@@ -5,14 +5,8 @@ from django.shortcuts import render
 
 
 def home(request):
-    return render(request, 'home.html')
-
-
-@login_required
-def main(request):
-
     last_news = News.objects.order_by('-published_at').first()
-    return render(request, 'main.html', {'last_news': last_news})
+    return render(request, 'home.html', {'last_news': last_news})
 
 
 def museum_info(request):

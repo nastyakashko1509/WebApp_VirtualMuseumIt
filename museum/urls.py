@@ -16,9 +16,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('admin_dashboard/', admin_dashboard, name='admin_dashboard'),
     
-    # Главные страницы
+    # Главная страница
     path('', home, name='home'),
-    path('main/', main, name='main'),
 
     # Дополнительная страница (для выполнения всех заданий из ЛР)
     path('additional_page/', additional_page_view, name='additional_page'),
@@ -35,7 +34,7 @@ urlpatterns = [
     # Страницы для перенаправления после входа
     path('employee/', employee_list, name='employee'),
     path('employee_dashboard/', employee_dashboard, name='employee_dashboard'),
-    path('employee/(?P<employee_id>\d+)/', employee_detail, name='employee_detail'),
+    path('employee/<int:employee_id>/', employee_detail, name='employee_detail'),
     path('client_dashboard/', client_dashboard, name='client_dashboard'),
 
     # Страницы с графиками и статистикой

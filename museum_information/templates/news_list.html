@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Новости музея</title>
-    <link rel="icon" href="/static/images/icon.png" type="image/png">
-</head>
-<body>
+{% extends "base.html" %}
 
+{% block title %}Новости музея{% endblock %}
+
+{% block content %}
 <h1>Новости музея</h1>
 
 <div>
@@ -42,8 +38,4 @@
 <div>
     <a href="https://belta.by">Посмотреть все свежие новости в Беларуси!</a>
 </div>
-
-<p><a href="{% url 'main' %}">← Назад на главную</a></p>
-
-</body>
-</html>
+{% endblock %}
