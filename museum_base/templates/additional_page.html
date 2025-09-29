@@ -4,287 +4,257 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
     <title>Дополнительная страница</title>
+
+    <style>
+        ul li:first-child { 
+            color: red; 
+        }
+        ul li:nth-child(2) { 
+            color: orange; 
+        }
+        ul li:nth-child(3) { 
+            color: yellow; 
+        }
+        ul li:nth-child(4) { 
+            color: green; 
+        }
+        ul li:nth-child(5) { 
+            color: blue; 
+        }
+        ul li:nth-child(6) { 
+            color: darkblue; 
+        }
+        ul li:last-child { 
+            color: purple; 
+        }
+
+        ol li:nth-child(odd) { 
+            background-color: aqua; 
+        }
+        ol li:nth-child(even) { 
+            background-color: pink; 
+        }
+
+        dl dd:nth-child(2n) { 
+            background-color: lightgreen; 
+        }
+
+        h3:only-child { 
+            background-color: greenyellow; 
+        }
+
+        thead th:first-of-type { 
+            background-color: darkred; 
+            color: white; 
+        }
+        thead th:last-of-type { 
+            background-color: darkblue; 
+            color: white; 
+        }
+
+        tbody td:first-of-type { 
+            font-weight: bold; 
+            background-color: lightpink; 
+        }
+        tbody td:last-of-type { 
+            font-style: italic; 
+            background-color: lightblue; 
+        }
+
+        tbody td:nth-of-type(2n+1) { 
+            border-right: 2px solid #ccc; 
+        }
+        tbody td:nth-of-type(2n) { 
+            border-left: 2px solid #ccc; 
+        }
+
+        tbody tr:nth-of-type(1) td:first-of-type { color: red; }
+        tbody tr:nth-of-type(2) td:first-of-type { color: orange; }
+        tbody tr:nth-of-type(3) td:first-of-type { color: green; }
+        tbody tr:nth-of-type(4) td:first-of-type { color: blue; }
+        tbody tr:nth-of-type(5) td:first-of-type { color: purple; }
+
+        tbody tr:last-of-type td:last-of-type { 
+            background-color: plum; 
+        }
+
+        input:enabled {
+            background-color: lightgreen;
+        }
+
+        input:disabled {
+            background-color: lightcoral;
+        }
+
+        input:checked + label {
+            font-weight: bold;
+            color: green;
+        }
+
+        input:default {
+            outline: 2px dashed orange;
+        }
+
+        input:valid {
+            border: 2px solid green;
+        }
+
+        input:invalid {
+            border: 2px solid red;
+        }
+
+        input:in-range {
+            background-color: #e0f7ff;
+        }
+
+        input:out-of-range {
+            background-color: #fff0f0;
+        }
+
+        input:required {
+            border-left: 4px solid blue;
+        }
+
+        input:optional {
+            border-left: 4px solid gray;
+        }
+
+        .form-block {
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px dashed #888;
+            background-color: #f9f9f9;
+        }
+
+        .form-block h2 {
+            margin-bottom: 10px;
+            color: darkmagenta;
+        }
+
+        .form-block label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        q:lang(ru) {
+            quotes: "«" "»" "„" "“";
+        }
+        q:lang(en) {    
+            quotes: "\201C" "\201D";    
+        } 
+    </style>
 </head>
 <body>
-    <hgroup>
-        <h1 dir="auto" lang="en" translate="yes">
-            <a id="start"></a>
-            My cart
-        </h1>
+    <div>
+        <h2>Мои мечты:</h2>
+        <ul>
+            <li>Иметь большую и дружную семью</li>
+            <li>Устроиться на работу, которая будет в радость</li>
+            <li>Посетить все диснейленды мира</li>
+            <li>Иметь много-много лего</li>
+            <li>Путешествовать и развиваться</li>
+            <li>Найти своего человека</li>
+            <li>Чтобы все в этом мире были здоровы</li>
+        </ul> 
+    </div>  
 
-        <h2 dir="ltr" lang="ru" 
-            contenteditable
-            spellcheck="true">"Моя карзина"</h2>
+    <div>
+        <h2>Действия, которые необходимы, чтобы мечты осуществились:</h2>
+        <ol>
+            <li>Поддерживать родных и близких</li>
+            <li>Развиваться и пробовать себя в новых сферах</li>
+            <li>Ходить на различные мероприятия и знакомиться с новыми людьми</li>
+            <li>Заниматься спортом и думать только о хорошем</li>
+        </ol>
+    </div>
 
-        <h3 dir="rtl" lang="be">"Мой кошык"</h3>
-    </hgroup>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Мечта</th>
+                    <th>Действие</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Семья</td><td>Поддержка родных</td></tr>
+                <tr><td>Любимая работа</td><td>Развитие и проба нового</td></tr>
+                <tr><td>Путешествия</td><td>Смелость и планирование</td></tr>
+                <tr><td>Личностный рост</td><td>Чтение, спорт</td></tr>
+                <tr><td>Здоровье</td><td>Правильное питание</td></tr>
+            </tbody>
+        </table>
+    </div>
 
-    <hr>
-    <p>
-        <code>
-            var mood = ["good", "bad"];<br>
-            document.writeln("I have " + mood[1] + " mood");
-        </code>
-    </p>
-    <p>Имя списка (переменной): <var>mood</var></p>
-    <p>Результат работы программы: <samp>I have bad mood</samp></p>
-    <p>Пользователь ввёл: <kbd>bad</kbd>
+    <div>
+        <h2>Мои прошлые мечты (то есть они уже осуществились):</h2>
+        <dl>
+            <dd>1. Поступить в университет на бюджет</dd>
+            <dd>2. Побывать за границей</dd>
+            <dd>3. Дайвинг</dd>
+            <dd>4. Полёт на самолёте</dd>
+        </dl>
+    </div>
 
-    <hr>
-    <h3>Оформление аббревиатур</h3>
-    <abbr title="Белорусский государственный университет информатики и радиоэлектроники">БГУИР</abbr>
+    <div>
+        <h2>Мысли счастливого человека (зелёный цвет) и не совсем (красный цвет):</h2>
+        <div>
+            <h3>Я единственная и неповторимая!</h3>
+        </div>
+        <div>
+            <h3 style="background-color: tomato;">Я такая же как и все!</h3>
+            <h3 style="background-color: tomato;">Во мне нет ничего особенного</h3>
+        </div>
+    </div>    
+    <div class="form-block">
+        <h2>Форма исполнения мечт</h2>
+        <form>
+            <label for="enabled">Ваше имя:</label>
+            <input type="text" id="enabled" name="name" placeholder="Введите имя" enabled>
 
-    <hr>
-    <h3>Оформление определений</h3>
-    <dfn title="определение">Учёба</dfn> - это то, что позволяет развиваться и уставать одновременно.
+            <label for="disabled">Ваш ID (нельзя изменить):</label>
+            <input type="text" id="disabled" name="user_id" value="12345" disabled>
 
-    <hr>
-    <h3>Оформление цитат</h3>
-    <q cite="https://www.forbes.ru/forbeslife/dosug/262327-na-vse-vremena-100-vdokhnovlyayushchikh-tsitat">
-        Что разум человека может постигнуть и во что он может поверить, того он способен достичь
-    </q>
-    <blockquote cite="https://www.forbes.ru/forbeslife/dosug/262327-na-vse-vremena-100-vdokhnovlyayushchikh-tsitat">
-        Что разум человека может постигнуть и во что он может поверить, того он способен достичь
-    </blockquote>
-    <p>Данная цитата взята на сайте <cite>Forbes</cite>.</p>
+            <label>Пол:</label>
+            <input type="radio" id="male" name="gender" value="male" checked>
+            <label for="male">Мужской</label>
 
-    <hr>
-    <mark>Выделенный текст</mark>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Женский</label>
 
-    <hr>
-    <p>Это <span style="color: red;">слово</span> выделено красным цветом.</p>
+            <label for="email">Электронная почта:</label>
+            <input type="email" id="email" name="email" required>
 
-    <hr>
-    <h3>Оформление четверостишия</h3>
-    И труд нелеп, и бестолкова праздность,<br>
-    И с плеч долой всё та же голова,<br>
-    Когда приходит бешеная ясность,<br>
-    Насилуя притихшие слова.
+            <label for="age">Возраст (от 18 до 60):</label>
+            <input type="number" id="age" name="age" min="18" max="60">
 
-    <hr>
-    <h3>Картинка-ссылка</h3>
-    <a href="https://ru.freepik.com/photos/море" target="_blank" hreflang="ru" type="image/png">
-        <img src="{% static 'images/sea.jpg' %}" height="150" width="150">
-    </a>
+            <label for="password">Пароль (обязательно):</label>
+            <input type="password" id="password" name="password" required>
 
-    <hr>
-    <h3>Скачивание документа(ов) по ссылке</h3>
-    <a href="{% static 'images/mountains.png' %}" download>
-        <img src="{% static 'images/mountains.png' %}" width="150">
-    </a>
+            <label for="comment">Комментарий (необязательно):</label>
+            <input type="text" id="comment" name="comment">
 
-    <hr>
-    <h3>Переход в начало страницы</h3>
-    <a href="#start">Перейти!</a>
+            <br><br>
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+    <div>
+        <br>
+        <a href="#section1">Перейти к секции 1</a>
+        <a href="#section2">Перейти к секции 2</a>
 
-    <hr>
-    <h3>Форматированный текст</h3>
-    <pre>
-        И труд нелеп , и бестолкова праздность,
+        <div id="section1">Секция 1</div>
+        <div id="section2">Секция 2</div>
 
-        И с плеч долой всё та же голова,
-
-        Когда приходит бешеная ясность ,
-
-        Насилуя притихшие слова .
-    </pre>
-
-    <hr color="yellow">
-    <h3>Сверху отрисована разноцветная линия, color - устаревший атрибут!</h3>
-
-    <hr>
-    <h3>Список определений</h3>
-    <dl>
-        <dt>Мама</dt>
-        <dd>- это шея</dd>
-        <dd>- это любовь и забота</dd>
-
-        <dt>Папа</dt>
-        <dd>- это голова</dd>
-        <dd>- это защита и опора</dd>
-    </dl>
-
-    <hr>
-    <h3>Фигуры - способ группировки объектов</h3>
-    <figure>
-        Реборны - это куклы, которые невозможно отличить от настоящего малыша!<br>
-        <img src="{% static 'images/reborn.jpg' %}" width="150">
-        <figcaption>Кукла "Реборн"</figcaption>
-    </figure>
-
-    <hr>
-    <h3>Семантические секции</h3>
-    <section>
-        <h4>Введение</h4>
-        <article>
-            <p>Законченная статья</p>
-        </article>
-    </section>
-    <section>
-        <h4>Основная часть</h4>
-        <article>
-            <p>Законченная статья</p>
-        </article>
-    </section>
-
-    <hr>
-    <h3>Таблицы</h3>
-    <table Summary="Краткое описание (не отображается)"
-           cellpadding="5"
-           cellspacing="5">
-        <caption>Заголовок таблицы</caption>   
-        <thead>
-            <tr>
-                <th>Шапка</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <td>Подвал</td>
-            </tr>
-        </tfoot>
-        <tr>
-            <th>Номер</th>
-            <th>Пол</th>
-            <th>Имя</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Ж</td>
-            <td>Анастасия</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Ж</td>
-            <td>Влада</td>
-        </tr>
-    </table>
-
-    <table cellpadding="5"
-           cellspacing="5">
-        <tr>
-            <th>Номер</th>
-            <th>Пол</th>
-            <th>Имя</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td colspan="2">Анастасия</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Ж</td>
-            <td>Влада</td>
-        </tr>
-    </table>
-
-    <table cellpadding="5"
-           cellspacing="5">
-        <tr>
-            <th>Номер</th>
-            <th>Пол</th>
-            <th>Имя</th>
-        </tr>
-        <tr>
-            <td rowspan="2">1, 2</td>
-            <td>Ж</td>
-            <td>Анастасия</td>
-        </tr>
-        <tr>
-            <td>Ж</td>
-            <td>Влада</td>
-        </tr>
-    </table>
-
-    <table cellpadding="5"
-           cellspacing="5"
-           border="1">
-        <tr>
-            <th>Номер</th>
-            <th>Пол</th>
-            <th>Имя</th>
-        </tr>
-        <tr>
-            <td rowspan="2">1</td>
-            <td>Ж</td>
-            <td>Анастасия</td>
-        </tr>
-        <tr>
-            <td rowspan="3">Влада</td>
-        </tr>
-    </table>
-
-    <table cellpadding="5"
-           cellspacing="5">
-        <tr>
-            <th id="number">Номер</th>
-            <th id="sex">Пол</th>
-            <th id="name">Имя</th>
-        </tr>
-        <tr>
-            <td id="first" headers="number">1</td>
-            <td headers="sex first">Ж</td>
-            <td headers="name first">Анастасия</td>
-        </tr>
-        <tr>
-            <td id="second" headers="number">2</td>
-            <td headers="sex second">Ж</td>
-            <td headers="name second">Влада</td>
-        </tr>
-    </table>
-
-    <table>
-        <thead>
-            <tr>
-            <th id="col_number">Номер</th>
-            <th id="col_sex">Пол</th>
-            <th id="col_name">Имя</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-            <td headers="col_number">1</td>
-            <td headers="col_sex">Ж</td>
-            <td headers="col_name">Анастасия</td>
-            </tr>
-            <tr>
-            <td headers="col_number">2</td>
-            <td headers="col_sex">Ж</td>
-            <td headers="col_name">Влада</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <hr>
-    <h3>Элементы управления (радиокнопки)</h3>
-    День недели:<br>
-    <form>
-        <input type="radio" checked> понедельник<br>
-        <input type="radio"> вторник<br>
-        <input type="radio"> среда<br>
-        <input type="radio"checked> четверг<br>
-        <input type="radio"> пятница<br>
-        <input type="radio"> суббота<br>
-        <input type="radio" checked> воскресенье<br>
-
-        <input type="reset" value="Очистить">
-    </form>
-
-    <hr>
-    <h3>Адаптивные изображения</h3>
-    <img 
-        src="{% static 'images/palm.jpg' %}" 
-        srcset="{% static 'images/palm.jpg' %} 480w, 
-                {% static 'images/palm.jpg' %} 800w, 
-                {% static 'images/palm.jpg' %} 1200w">
-
-    <hr>
-    <h3>Использование фреймов</h3>
-    <iframe name="window" width="200" height="200">Настроение поднять!</iframe>
-    <a href="{% static 'images/good_mood.jpg' %}" target="window">Мотивацию поднять!</a>
-
-    <p><a href="{% url 'home' %}">← Вернуться на главную</a></p>
-
+        <style>
+        div:target {
+            background-color: yellow; 
+        }
+        </style>
+    </div>
+    <br>
+    <a href="{% url 'home' %}">← Вернуться на главную</a>
 </body>
 </html>

@@ -1,3 +1,7 @@
+* {
+    background-color: rgb(229, 240, 249);
+}
+
 .content-wrapper {
     display: flex;
     align-items: stretch; 
