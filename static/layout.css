@@ -1,5 +1,5 @@
-* {
-    background-color: rgb(229, 240, 249);
+body {
+    background-color: rgb(225, 236, 245);
 }
 
 .content-wrapper {
@@ -17,9 +17,18 @@ aside {
 }
 
 aside a, 
-aside form, 
-aside button {
+aside form {
     background-color: rgb(185, 212, 234);
+}
+
+button, form button, aside button {
+    cursor: pointer;          
+    background-color: rgb(185, 212, 234);
+}
+
+button:hover, form button:hover, aside button:hover {
+    transform: scale(1.05);       /* лёгкое увеличение */
+    background-color: #c0e0f0;    /* эффект подсветки */
 }
 
 header, 

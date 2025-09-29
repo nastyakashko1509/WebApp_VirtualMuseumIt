@@ -8,10 +8,9 @@
 
 <div>
     {% if about %}
-        <h2>О нас</h2>
         <main>
             <div>
-                <p>{{ about.content|linebreaks }}</p>
+                {{ about.content|linebreaks }}
                 <a href="{% url 'museum_info' %}">Вся информация о музее</a><br>
             </div>
         </main>
