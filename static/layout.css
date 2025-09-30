@@ -1,5 +1,6 @@
 body {
     background-color: rgb(225, 236, 245);
+    padding-top: 50px;
 }
 
 .content-wrapper {
@@ -16,7 +17,10 @@ aside {
     order: 2;
 }
 
-aside a, 
+aside a {
+    background-color: rgb(185, 212, 234);
+}
+
 aside form {
     background-color: rgb(185, 212, 234);
 }
@@ -31,10 +35,30 @@ button:hover, form button:hover, aside button:hover {
     background-color: #c0e0f0;    /* эффект подсветки */
 }
 
-header, 
+header.layout {
+    text-align: center;
+    background-color: rgb(185, 212, 234);
+}
+
 header > h1 {
     text-align: center;
     background-color: rgb(185, 212, 234);
+    margin: 0;
+    padding: 10px 0;
+    font-family: 'Georgia', serif;                   
+    letter-spacing: 1px; 
+}
+
+.fixed-nav {
+    position: fixed;
+    top: 0; 
+    text-align: center;
+    left: 0;
+    width: 100%;
+    background-color: rgb(185, 212, 234);
+    z-index: 1000;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 footer, 
@@ -82,4 +106,14 @@ h1.layout, h2.layout {
 footer h3#details {
     font-style: italic;
     color: purple;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto;                  
+    transition: transform 0.4s ease; 
+}
+
+.logo:hover {
+    transform: scale(1.05) rotate(-2deg); 
 }

@@ -24,3 +24,171 @@ nav a:focus {
 nav a + a {
     margin-left: 10px;
 }
+
+.tour-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.tour-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    background-color: #e5b8eb;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease;
+}
+
+.tour-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.tour-card ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.tour-card a {
+    text-decoration: none;
+    color: #333;
+}
+
+.partners-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+.partner {
+    width: 200px;
+    height: 200px;
+    border: 3px solid purple;        
+    border-radius: 50%;              
+    background-color: #e5b8eb;       
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    transition: transform 0.3s ease;
+}
+
+.partner:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.partner img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 50%; 
+    margin-bottom: 10px;
+}
+
+.partner h3 {
+    font-family: 'Georgia', serif;      
+    font-size: 1.1em;                   
+    font-weight: bold;                
+    letter-spacing: 1px;               
+    color: #333;                       
+}
+
+.partner a {
+    font-size: 0.9em;
+    color: purple;
+}
+
+.last-news {
+    position: relative;      
+    border: 3px solid purple;
+    padding: 20px;
+    max-width: 600px;
+    background-color: #e5b8eb;
+    margin: 20px auto;
+    border-radius: 8px;
+}
+
+.last-news img {
+    float: left;             
+    width: 200px;
+    height: 200px;
+    margin-right: 20px;
+    border-radius: 8px;
+}
+
+.last-news .published-date {
+    position: absolute;      
+    bottom: 10px;
+    right: 10px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.certificate {
+    position: relative;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px 60px;
+    background-color: #fff;
+    
+    background-image: url("images/certificate-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    
+    background-image: linear-gradient(to bottom right, rgba(255,255,255,0.8), rgba(186, 186, 242, 0.8)), 
+                      url("images/certificate-bg.jpg");
+    
+    border: 20px solid transparent;
+    border-image: url("images/certificate-border.png") 30 stretch;
+    -webkit-border-image: url("images/certificate-border.png") 30 stretch; 
+    -moz-border-image: url("images/certificate-border.png") 30 stretch; 
+    
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    z-index: 1;
+    
+    font-family: 'Georgia', serif; 
+    text-align: center;            
+    color: #333;
+}
+
+.certificate h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #4b0082;
+    letter-spacing: 2px; 
+}
+
+.certificate h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+    font-style: italic;
+    color: #2e0854;
+}
+
+.certificate p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin: 15px 0;
+}
+
+.certificate table {
+    margin-top: 30px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.certificate td p {
+    margin: 5px 0;
+}
+
+.certificate td em {
+    font-style: italic;
+    color: #4b0082;
+}

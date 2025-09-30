@@ -4,7 +4,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Музей информационных технологий{% endblock %}</title>
+    <title class="H1">{% block title %}Музей информационных технологий{% endblock %}</title>
     <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
     <link rel="stylesheet" href="{% static 'layout.css' %}">
     <link rel="stylesheet" href="{% static 'main.css' %}">
@@ -12,7 +12,7 @@
 <body>
     <header class="layout">
         <h1>- Музей информационных технологий -</h1>
-        <img src="{% static 'images/logo.jpg' %}" height="150" width="700">
+        <img src="{% static 'images/logo.jpg' %}" height="150" width="700" class="logo">
         <br>
         <img src="{% static 'images/banner/banner1.jpg' %}">
         <img src="{% static 'images/banner/banner2.jpg' %}">
@@ -22,6 +22,19 @@
         <hr>
     </header>
 
+    <nav class="fixed-nav">
+            <a href="{% url 'home' %}">Главная</a> |
+            <a href="{% url 'about' %}">О музее</a> |
+            <a href="{% url 'news_list' %}">Новости</a> |
+            <a href="{% url 'vacancies' %}">Вакансии</a> |
+            <a href="{% url 'employee' %}">Сотрудники</a> |
+            <a href="{% url 'reviews' %}">Отзывы</a> |
+            <a href="{% url 'faq_list' %}">Вопросы</a> |
+            <a href="{% url 'promocodes' %}">Промокоды</a> |
+            <a href="{% url 'museum_info' %}">Полезная информация</a> |
+            <a href="{% url 'privacy_policy' %}">Политика конфиденциальности</a>
+    </nav>
+
     <div class="content-wrapper">
         <main>
             {% block content %}
@@ -29,16 +42,6 @@
         </main>
 
         <aside>
-            <a href="{% url 'home' %}">Главная</a><br>
-            <a href="{% url 'about' %}">О музее</a><br>
-            <a href="{% url 'news_list' %}">Новости</a><br>
-            <a href="{% url 'vacancies' %}">Вакансии</a><br>
-            <a href="{% url 'employee' %}">Сотрудники</a><br>
-            <a href="{% url 'reviews' %}">Отзывы</a><br>
-            <a href="{% url 'faq_list' %}">Вопросы</a><br>
-            <a href="{% url 'promocodes' %}">Промокоды</a><br>
-            <a href="{% url 'museum_info' %}">Полезная информация</a><br>
-            <a href="{% url 'privacy_policy' %}">Политика конфиденциальности</a><br>
             <a href="{% url 'statistics' %}" target="_blank">Статистика</a><br>
             <a href="{% url 'sales_charts_page' %}" target="_blank">Графики</a><br>
             <a href="{% url 'joke' %}"target="_blank">Шутки</a><br>

@@ -8,9 +8,9 @@
 
     <section class="tour">
         <h2>Список проводимых экскурсий</h2>
-        <ul class="tour-list">
+        <div class="tour-grid">
             {% for tour in tours %}
-                <li>
+                <div class="tour-card">
                     <strong>{{ tour.title }}</strong> — {{ tour.topic }}<br>
                     Время начала: {{ tour.start_time }} — Время окончания: {{ tour.end_time }}<br>
                     <em>Билеты:</em>
@@ -30,11 +30,11 @@
                     {% else %}
                         Нет доступных билетов.
                     {% endif %}
-                </li>
+                </div>
             {% empty %}
                 <p>Нет доступных экскурсий.</p>
             {% endfor %}
-        </ul>
+        </div>
     </section>
 
     <section class="hall">
@@ -129,12 +129,12 @@
     </section>
 
     <section class="partners">
-        <h2>Наши партнеры</h2>
+        <h2 style="text-align: center;">Наши партнёры</h2>
         <div class="partners-list">
             {% for partner in partners %}
                 <div class="partner">
                     {% if partner.photo_logo %}
-                        <img src="{{ partner.photo_logo.url }}" alt="{{ partner.name }}" width="150" height="100">
+                        <img src="{{ partner.photo_logo.url }}" alt="{{ partner.name }}">
                     {% endif %}
                     <h3>{{ partner.name }}</h3>
                     {% if partner.website %}
@@ -145,7 +145,7 @@
                     {% endif %}
                 </div>
             {% empty %}
-                <p>У нас пока нет партнеров.</p>
+                <p>У нас пока нет партнёров.</p>
             {% endfor %}
         </div>
     </section>

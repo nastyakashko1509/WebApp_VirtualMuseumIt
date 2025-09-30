@@ -20,15 +20,15 @@
         <a href="/admin/login/">Войти в админпанель</a>
     </nav>
 </div>
-<div>
+<div class="last-news">
     {% if last_news %}
         <h3>{{ last_news.title }}</h3>
-        <p>{{ last_news.short_description }}</p>
         {% if last_news.image %}
-            <img src="{{ last_news.image.url }}" alt="Изображение новости" height="200" width="200">
+            <img src="{{ last_news.image.url }}" alt="Изображение новости">
         {% endif %}
+        <p>{{ last_news.short_description }}</p>
         <p>{{ last_news.content }}</p>
-        <div>Опубликовано: {{ last_news.published_at|date:"d.m.Y H:i" }}</div>
+        <div class="published-date">Опубликовано: {{ last_news.published_at|date:"d.m.Y H:i" }}</div>
     {% else %}
         <p>Новостей пока нет.</p>
     {% endif %}
