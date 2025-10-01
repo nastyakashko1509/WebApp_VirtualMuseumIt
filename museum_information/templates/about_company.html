@@ -8,80 +8,80 @@
 
 <div>
     {% if about %}
-        <main>
-            <div>
-                {{ about.content|linebreaks }}
-                <a href="{% url 'museum_info' %}">Вся информация о музее</a><br>
-            </div>
-        </main>
-        
-        <h2>Видео о нашем музее</h2>
-        <div>
+        <div style="font-family: Georgia, serif; font-size: 1em; color: #333; line-height: 1.6;">
+            {{ about.content|linebreaks }}
+            <a href="{% url 'museum_info' %}" style="color: #1a73e8; text-decoration: underline; font-weight: bold;">
+                Вся информация о музее
+            </a><br>
+        </div>
+
+        <h2 style="font-family: Georgia, serif; color: #4b0082; margin-top: 40px;">Видео о нашем музее</h2>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
             <video width="360" height="240" 
                 src="/static/videos/people.mp4"
-                autoplay controls preload="none" muted>
+                autoplay controls preload="none" muted
+                style="border: 3px solid #4b0082; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
                 Ваш браузер не поддерживает видео.
             </video>
-            <hr>
-            <iframe 
-                width="360" 
-                height="240" 
-                src="/static/videos/fire.mp4"
-                frameborder="0"
-                allowfullscreen
-                allow="autoplay; encrypted-media"
-                title="Видео о нашем музее">
+
+            <iframe width="360" height="240" 
+                    src="/static/videos/fire.mp4"
+                    frameborder="0"
+                    allowfullscreen
+                    allow="autoplay; encrypted-media"
+                    title="Видео о нашем музее"
+                    style="border: 3px solid #4b0082; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
                 Ваш браузер не поддерживает видео.
             </iframe>
-            <hr>
-            <object 
-                width="360" 
-                height="240" 
-                type="video/mp4"
-                data="/static/videos/hand.mp4">
+
+            <object width="360" height="240" type="video/mp4" data="/static/videos/hand.mp4"
+                    style="border: 3px solid #4b0082; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
                 <param name="autoplay" value="true">
                 <param name="controller" value="true">
                 <param name="muted" value="true">
                 Ваш браузер не поддерживает видео.
             </object>
-            <hr>
-            <embed 
-                width="360" 
-                height="240" 
-                src="/static/videos/robot.mp4"
-                type="video/mp4"
-                autoplay="true"
-                controller="true"
-                muted="true">
+
+            <embed width="360" height="240" src="/static/videos/robot.mp4" type="video/mp4"
+                autoplay="true" controller="true" muted="true"
+                style="border: 3px solid #4b0082; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
         </div>
 
-        <h2>Аудио нашего музея</h2>
-        <audio controls>
-            <source src="/static/videos/polaroid-camera.mp3">
-            Ваш браузер не поддерживает воспроизведение аудио.
-        </audio>
-        <embed 
-            src="{% static 'videos/polaroid-camera.mp3' %}" 
-            width="300" 
-            height="50" 
-            type="audio/mpeg" />
-        
-        <h2>История музея по годам</h2>
-        <div>
-            <h3>2020</h3>
-            <p>Основание музея. Начало формирования коллекции.</p>
-            
-            <h3>2021</h3>
-            <p>Открытие первых экспозиций. Проведение образовательных программ.</p>
-            
-            <h3>2022</h3>
-            <p>Расширение коллекции. Участие в международных выставках.</p>
-            
-            <h3>2023</h3>
-            <p>Запуск виртуальных туров. Внедрение современных технологий.</p>
-            
-            <h3>2024</h3>
-            <p>Открытие новых залов. Разработка интерактивных экспонатов.</p>
+        <h2 style="font-family: Georgia, serif; color: #4b0082; margin-top: 40px;">Аудио нашего музея</h2>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <audio controls style="width: 360px; outline: none;">
+                <source src="/static/videos/polaroid-camera.mp3">
+                Ваш браузер не поддерживает воспроизведение аудио.
+            </audio>
+
+            <embed src="{% static 'videos/polaroid-camera.mp3' %}" width="360" height="50" type="audio/mpeg"
+                style="border: 2px solid #4b0082; border-radius: 5px;">
+        </div>
+
+        <h2 style="font-family: Georgia, serif; color: #4b0082; margin-top: 40px;">История музея по годам</h2>
+        <div style="font-family: Georgia, serif; color: #333; line-height: 1.6; max-width: 600px; margin: 0 auto;">
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 15px;">
+                    <span style="font-weight: bold; color: #2e0854; font-size: 1.2em;">2020:</span>
+                    Основание музея. Начало формирования коллекции.
+                </li>
+                <li style="margin-bottom: 15px;">
+                    <span style="font-weight: bold; color: #2e0854; font-size: 1.2em;">2021:</span>
+                    Открытие первых экспозиций. Проведение образовательных программ.
+                </li>
+                <li style="margin-bottom: 15px;">
+                    <span style="font-weight: bold; color: #2e0854; font-size: 1.2em;">2022:</span>
+                    Расширение коллекции. Участие в международных выставках.
+                </li>
+                <li style="margin-bottom: 15px;">
+                    <span style="font-weight: bold; color: #2e0854; font-size: 1.2em;">2023:</span>
+                    Запуск виртуальных туров. Внедрение современных технологий.
+                </li>
+                <li style="margin-bottom: 15px;">
+                    <span style="font-weight: bold; color: #2e0854; font-size: 1.2em;">2024:</span>
+                    Открытие новых залов. Разработка интерактивных экспонатов.
+                </li>
+            </ul>
         </div>
         
         <div class="certificate">

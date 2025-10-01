@@ -3,37 +3,102 @@
 {% block title %}Промокоды и купоны{% endblock %}
 
 {% block content %}
-<h1>Промокоды и купоны</h1>
+<h1 class="promo-title">Промокоды и купоны</h1>
 
-<div>
-    <h2>Действующие промокоды</h2>
+<div class="promo-section">
+    <h2 class="promo-subtitle">Действующие промокоды</h2>
     {% if active_codes %}
         {% for promo in active_codes %}
-            <div>
-                <strong>{{ promo.code }}</strong><br>
-                <span>{{ promo.description }}</span><br>
-                <small>Действует до: {{ promo.valid_until|date:"d.m.Y" }}</small>
-                <hr>
+            <div class="promo-card active">
+                <strong class="promo-code">{{ promo.code }}</strong><br>
+                <span class="promo-description">{{ promo.description }}</span><br>
+                <small class="promo-date">Действует до: {{ promo.valid_until|date:"d.m.Y" }}</small>
             </div>
         {% endfor %}
     {% else %}
-        <p>Нет действующих промокодов.</p>
+        <p class="no-promos">Нет действующих промокодов.</p>
     {% endif %}
 </div>
 
-<div>
-    <h2>Архив промокодов</h2>
+<div class="promo-section">
+    <h2 class="promo-subtitle">Архив промокодов</h2>
     {% if archived_codes %}
         {% for promo in archived_codes %}
-            <div>
-                <strong>{{ promo.code }}</strong><br>
-                <span>{{ promo.description }}</span><br>
-                <small>Истёк: {{ promo.valid_until|date:"d.m.Y" }}</small>
-                <hr>
+            <div class="promo-card archive">
+                <strong class="promo-code">{{ promo.code }}</strong><br>
+                <span class="promo-description">{{ promo.description }}</span><br>
+                <small class="promo-date">Истёк: {{ promo.valid_until|date:"d.m.Y" }}</small>
             </div>
         {% endfor %}
     {% else %}
-        <p>Архив пуст.</p>
+        <p class="no-promos">Архив пуст.</p>
     {% endif %}
 </div>
+
+<style>
+    .promo-title {
+        font-family: Georgia, serif;
+        color: #4b0082;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .promo-subtitle {
+        font-family: Georgia, serif;
+        color: #2e0854;
+        border-bottom: 2px solid #4b0082;
+        padding-bottom: 5px;
+        margin-top: 20px;
+    }
+
+    .promo-section {
+        max-width: 800px;
+        margin: 0 auto 40px auto;
+    }
+
+    .promo-card {
+        border-radius: 10px;
+        padding: 15px;
+        margin: 15px 0;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        font-family: Georgia, serif;
+    }
+
+    .promo-card.active {
+        background-color: #e0ffe0;
+        border: 2px solid #4b0082;
+    }
+
+    .promo-card.archive {
+        background-color: #ffe0e0;
+        border: 2px solid #800000;
+    }
+
+    .promo-code {
+        font-size: 1.2em;
+    }
+
+    .promo-code.active {
+        color: #006400;
+    }
+
+    .promo-card.archive .promo-code {
+        color: #800000;
+    }
+
+    .promo-description {
+        font-size: 1em;
+        color: #333;
+    }
+
+    .promo-date {
+        color: #555;
+        font-size: 0.9em;
+    }
+
+    .no-promos {
+        font-style: italic;
+        color: #555;
+    }
+</style>
 {% endblock %}

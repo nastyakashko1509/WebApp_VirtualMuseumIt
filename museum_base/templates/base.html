@@ -11,14 +11,18 @@
 </head>
 <body>
     <header class="layout">
-        <h1>- Музей информационных технологий -</h1>
-        <img src="{% static 'images/logo.jpg' %}" height="150" width="700" class="logo">
+        <h1 class="company-title">- Музей информационных технологий -</h1>
+        <img src="{% static 'images/logo.png' %}" height="150" width="700" class="logo">
         <br>
-        <img src="{% static 'images/banner/banner1.jpg' %}">
-        <img src="{% static 'images/banner/banner2.jpg' %}">
-        <img src="{% static 'images/banner/banner3.jpg' %}">
-        <img src="{% static 'images/banner/banner4.jpg' %}">
-        <img src="{% static 'images/banner/banner5.jpg' %}">
+        <div class="banner-container">
+            <div class="banner-slider">
+                <img src="{% static 'images/banner/banner1.jpg' %}" class="banner">
+                <img src="{% static 'images/banner/banner2.jpg' %}" class="banner">
+                <img src="{% static 'images/banner/banner3.jpg' %}" class="banner">
+                <img src="{% static 'images/banner/banner4.jpg' %}" class="banner">
+                <img src="{% static 'images/banner/banner5.jpg' %}" class="banner">
+            </div>
+        </div>
         <hr>
     </header>
 

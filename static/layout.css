@@ -94,7 +94,7 @@ img[src*="banner"] {
     width: 200px;
 }
 
-img[src$=".jpg"] {
+.layout img[src$=".png"] {
     border: 3px solid purple;  
 }
 
@@ -116,4 +116,41 @@ footer h3#details {
 
 .logo:hover {
     transform: scale(1.05) rotate(-2deg); 
+}
+
+.layout {
+    text-align: center;
+}
+
+.banner-container {
+    width: 200px;     
+    height: 200px;    
+    margin: 20px auto;
+    overflow: hidden; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    border: 3px solid purple; 
+}
+
+.banner-slider {
+    display: flex;
+    width: calc(200px * 5); 
+    animation: slide 25s infinite; 
+}
+
+.banner-slider .banner {
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0; 
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    cursor: grab; 
+}
+
+@keyframes slide {
+    0%   { transform: translateX(0); }
+    20%  { transform: translateX(-200px); }
+    40%  { transform: translateX(-400px); }
+    60%  { transform: translateX(-600px); }
+    80%  { transform: translateX(-800px); }
+    100% { transform: translateX(0); }
 }

@@ -3,15 +3,76 @@
 {% block title %}Вакансии музея{% endblock %}
 
 {% block content %}
-<h1>Вакансии музея</h1>
+<h1 class="vacancies-title">Вакансии музея</h1>
 
-{% if positions %}
-    {% for position in positions %}
-        <hr>
-        <h2>{{ position.title }}</h2>
-        <p>{{ position.description|linebreaks }}</p>
-    {% endfor %}
-{% else %}
-    <p>Вакансий пока нет.</p>
-{% endif %}
+<div class="vacancies-container">
+    {% if positions %}
+        {% for position in positions %}
+            <div class="vacancy-card">
+                <h2 class="vacancy-title">{{ position.title }}</h2>
+                <p class="vacancy-description">{{ position.description|linebreaks }}</p>
+            </div>
+        {% endfor %}
+        <div style="clear: both;"></div>
+    {% else %}
+        <p class="no-vacancies">Вакансий пока нет.</p>
+    {% endif %}
+</div>
+
+<style>
+    .vacancies-title {
+        font-family: Georgia, serif;
+        color: #4b0082;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .vacancies-container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .vacancy-card {
+        float: left; 
+        width: 45%; 
+        margin: 0 2.5% 20px 2.5%; 
+        padding: 15px;
+        border: 2px solid #4b0082;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        background-color: #f0f0ff;
+        font-family: Georgia, serif;
+    }
+
+    .vacancy-title {
+        font-size: 1.3em;
+        color: #2e0854;
+        margin-bottom: 10px;
+    }
+
+    .vacancy-description {
+        font-size: 1em;
+        color: #333;
+        line-height: 1.5;
+    }
+
+    .vacancies-container::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    .no-vacancies {
+        font-style: italic;
+        color: #555;
+        text-align: center;
+    }
+
+    @media (max-width: 700px) {
+        .vacancy-card {
+            width: 100%;
+            margin: 0 0 20px 0;
+        }
+    }
+</style>
 {% endblock %}

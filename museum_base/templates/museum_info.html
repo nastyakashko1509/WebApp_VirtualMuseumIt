@@ -50,13 +50,23 @@
 
     <section class="exhibition">
         <h2>Выставки</h2>
-        <ul class="exhibition-list">
-            {% for exhibition in exhibitions %}
-                <li>
-                    <strong>{{ exhibition.title }}</strong><br>
-                    Дата начала: {{ exhibition.start_date }}<br>
-                    Дата окончания: {{ exhibition.end_date }}
-                        <p><em>Экспозиции:</em></p>
+        <table class="exhibition-table">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Дата начала</th>
+                    <th>Дата окончания</th>
+                    <th>Экспозиции</th>
+                    <th>Билеты</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exhibition in exhibitions %}
+                <tr>
+                    <td>{{ exhibition.title }}</td>
+                    <td>{{ exhibition.start_date }}</td>
+                    <td>{{ exhibition.end_date }}</td>
+                    <td>
                         {% if exhibition.exposition.all %}
                             <ul>
                                 {% for exposition in exhibition.exposition.all %}
@@ -64,54 +74,76 @@
                                 {% endfor %}
                             </ul>
                         {% else %}
-                            <p>Нет экспозиций.</p>
+                            <span class="empty-cell">Нет экспозиций</span>
                         {% endif %}
-                    <p><em>Билеты:</em></p>
-                    {% if exhibition.ticket.all %}
-                        <ul>
-                            {% for ticket in exhibition.ticket.all %}
-                                <li>
-                                    <a href="{% url 'ticket_detail' ticket.pk %}">
-                                        Цена: {{ ticket.price }} руб.<br>
-                                        Возрастная категория: {{ ticket.get_visitor_age_display }}<br>
-                                        Тип дня: {{ ticket.get_day_type_display }}<br>
-                                        Разрешение на фото: {% if ticket.photo_permission_fee %}Да{% else %}Нет{% endif %}
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>Нет доступных билетов.</p>
-                    {% endif %}
-                </li>
-            {% empty %}
-                <p>Нет текущих выставок.</p>
-            {% endfor %}
-        </ul>
+                    </td>
+                    <td>
+                        {% if exhibition.ticket.all %}
+                            <ul>
+                                {% for ticket in exhibition.ticket.all %}
+                                    <li>
+                                        <a href="{% url 'ticket_detail' ticket.pk %}" class="ticket-link">
+                                            Цена: {{ ticket.price }} руб.<br>
+                                            Возраст: {{ ticket.get_visitor_age_display }}<br>
+                                            Тип дня: {{ ticket.get_day_type_display }}<br>
+                                            Фото: {% if ticket.photo_permission_fee %}Да{% else %}Нет{% endif %}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <span class="empty-cell">Нет доступных билетов</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="empty-cell">Нет текущих выставок</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </section>
 
     <section class="exposition">
         <h2>Экспозиции</h2>
-        <ul class="exposition-list">
-            {% for exposition in expositions %}
-                <li>
-                    <strong>{{ exposition.name }}</strong><br>
-                    {{ exposition.description }}
-                    <div class="exhibits">
-                        {% for exhibit in exposition.exhibits.all %}
-                            <div class="exhibit"> 
-                                {% if exhibit.photo %} 
-                                    <img src="{{ exhibit.photo.url }}" alt="{{ exhibit.title }}" width="100" height="100"> 
-                                {% endif %} 
-                                <p><strong>{{ exhibit.title }}</strong><br>{{ exhibit.description }}</p> 
+        <table class="exposition-table">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Описание</th>
+                    <th>Экспонаты</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exposition in expositions %}
+                <tr>
+                    <td>{{ exposition.name }}</td>
+                    <td>{{ exposition.description }}</td>
+                    <td>
+                        {% if exposition.exhibits.all %}
+                            <div class="exhibits">
+                                {% for exhibit in exposition.exhibits.all %}
+                                    <div class="exhibit">
+                                        {% if exhibit.photo %}
+                                            <img src="{{ exhibit.photo.url }}" alt="{{ exhibit.title }}" width="80" height="80">
+                                        {% endif %}
+                                        <p><strong>{{ exhibit.title }}</strong><br>{{ exhibit.description }}</p>
+                                    </div>
+                                {% endfor %}
                             </div>
-                        {% endfor %}
-                    </div>
-                </li>
-            {% empty %}
-                <p>Нет текущих экспозиций.</p>
-            {% endfor %}
-        </ul>
+                        {% else %}
+                            <span class="empty-cell">Нет экспонатов</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" class="empty-cell">Нет текущих экспозиций</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </section>
 
     <section class="promo">
@@ -149,4 +181,100 @@
             {% endfor %}
         </div>
     </section>
+
+    <style>
+        table {
+            width: 90%;                  
+            margin: 20px auto;           
+            border-collapse: collapse;    
+            border: 1px solid #6a5acd;  
+            font-family: Arial, sans-serif;
+        }
+
+        table thead th {
+            background-color: #6a5acd;   
+            color: #ffffff;               
+            padding: 10px;
+            text-align: center;           
+            vertical-align: middle;       
+            font-weight: bold;
+            border: 1px solid #6a5acd;  
+        }
+
+        table tbody td {
+            border: 1px solid #6a5acd;   
+            padding: 8px;
+            text-align: center;
+            vertical-align: middle;
+            color: #2f4f4f;               
+        }
+
+        .empty-cell {
+            display: inline-block;
+            background-color: #d8bfd8;   
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-style: italic;
+            color: #4b0082;             
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #e6e6fa;   
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #f0f8ff;  
+        }
+
+        tbody tr:hover {
+            background-color: #b0c4de;   
+        }
+
+        tbody td ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin: 0;
+            text-align: left;
+        }
+
+        .exhibits {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .exhibit img {
+            display: block;
+            margin: 0 auto 5px;
+            border: 1px solid #6a5acd;   
+            border-radius: 5px;
+        }
+
+        .exhibit p {
+            font-size: 12px;
+            text-align: center;
+            margin: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            color: #4b0082;               
+        }
+
+        .ticket-link {
+            color: #4b0082;        
+            display: inline-block;
+            padding: 3px 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .ticket-link:hover {
+            background-color: #b0c4de;
+            transform: scale(1.05);     
+        }
+    </style>
 {% endblock %}

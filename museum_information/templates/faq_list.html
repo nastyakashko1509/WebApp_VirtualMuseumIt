@@ -3,40 +3,166 @@
 {% block title %}Словарь терминов и понятий (FAQ){% endblock %}
 
 {% block content %}
-<h1>Вопросы и ответы</h1>
+<h1 class="faq-title">Вопросы и ответы</h1>
 
-<div>
+<div class="faq-container">
     {% for faq in faqs %}
-        <div>
-            <strong>{{ faq.question }}</strong><br>
+        <div class="faq-card">
+            <strong class="faq-question">{{ faq.question }}</strong>
             {% if faq.answer %}
-                <details>
-                    <summary>
+                <details class="faq-details">
+                    <summary class="faq-summary">
                         {% if faq.answer|length > 20 %}
                             {{ faq.answer|slice:":20" }}...
                         {% else %}
                             {{ faq.answer }}
                         {% endif %}
                     </summary>
-                    <p>{{ faq.answer|linebreaks }}</p>
+                    <p class="faq-answer">{{ faq.answer|linebreaks }}</p>
                 </details>
             {% else %}
-                <p><em>Ответ пока не дан</em></p>
+                <p class="no-answer"><em>Ответ пока не дан</em></p>
             {% endif %}
-            <small>Добавлено: {{ faq.added_date|date:"d.m.Y" }}</small>
-            <hr>
+            <small class="faq-date">Добавлено: {{ faq.added_date|date:"d.m.Y" }}</small>
         </div>
     {% empty %}
-        <p>Пока вопросов нет.</p>
+        <p class="no-faqs">Пока вопросов нет.</p>
     {% endfor %}
 </div>
 
-<form method="post" action="{% url 'faq_list' %}">
-    {% csrf_token %}
-    <label for="question">Задайте ваш вопрос:</label>
-    <br>
-    <textarea name="question" id="question" required rows="5" cols="50"></textarea>
-    <br>
-    <button type="submit">Отправить вопрос</button>
-</form>
+<div class="faq-form-container">
+    <form method="post" action="{% url 'faq_list' %}" class="faq-form">
+        {% csrf_token %}
+        <label for="question">Задайте ваш вопрос:</label><br>
+        <textarea name="question" id="question" required rows="5"></textarea><br>
+        <button type="submit">Отправить вопрос</button>
+    </form>
+</div>
+
+<style>
+    .faq-title {
+        font-family: Georgia, serif;
+        color: #4b0082;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .faq-card {
+        border: 2px solid #4b0082;
+        border-radius: 10px;
+        padding: 15px;
+        background-color: #f5f5ff;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .faq-question {
+        font-size: 1.2em;
+        color: #2e0854;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .faq-date {
+        font-size: 0.85em;
+        color: #555;
+        display: block;
+        margin-top: 10px;
+    }
+
+    .faq-details summary {
+        font-weight: bold;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 5px;
+        background-color: #e0e0ff;
+        transition: background-color 0.3s;
+    }
+
+    .faq-details summary:hover {
+        background-color: #c0c0ff;
+    }
+
+    .faq-answer {
+        margin-top: 10px;
+        line-height: 1.5;
+        color: #333;
+    }
+
+    .no-answer {
+        font-style: italic;
+        color: #555;
+    }
+
+    .no-faqs {
+        text-align: center;
+        font-style: italic;
+        color: #555;
+    }
+
+    .faq-form-container {
+        max-width: 800px;
+        margin: 40px auto;
+    }
+
+    .faq-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border: 2px solid #4b0082;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        background-color: #f9f9ff;
+    }
+
+    .faq-form label {
+        font-weight: bold;
+    }
+
+    .faq-form textarea {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #aaa;
+        outline: none;
+        resize: vertical;
+        transition: border-color 0.3s;
+    }
+
+    .faq-form textarea:focus {
+        border-color: #4b0082;
+    }
+
+    .faq-form button {
+        width: 150px;
+        padding: 8px 15px;
+        background-color: #4b0082;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .faq-form button:hover {
+        background-color: #6a00b8;
+    }
+
+    @media (max-width: 700px) {
+        .faq-card, .faq-form {
+            padding: 10px;
+        }
+        .faq-form button {
+            width: 100%;
+        }
+    }
+</style>
 {% endblock %}

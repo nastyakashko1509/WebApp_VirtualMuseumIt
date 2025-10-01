@@ -3,38 +3,135 @@
 {% block title %}Отзывы посетителей{% endblock %}
 
 {% block content %}
-<h1>Отзывы посетителей</h1>
+<h1 class="reviews-title">Отзывы посетителей</h1>
 
-<div>
-    <form method="post">
+<div class="review-form-container">
+    <form method="post" class="review-form">
         {% csrf_token %}
         <input type="text" name="user" placeholder="Ваше имя (необязательно)">
-        <br>
         <textarea name="text" placeholder="Ваш отзыв..." rows="4" required></textarea>
-        <br>
+
         <label>Оценка:</label>
-        <label><input type="radio" name="rating" value="1" required>1</label>
-        <label><input type="radio" name="rating" value="2">2</label>
-        <label><input type="radio" name="rating" value="3">3</label>
-        <label><input type="radio" name="rating" value="4">4</label>
-        <label><input type="radio" name="rating" value="5">5</label>
-        <br>
+        <div class="rating">
+            <label><input type="radio" name="rating" value="1" required>1</label>
+            <label><input type="radio" name="rating" value="2">2</label>
+            <label><input type="radio" name="rating" value="3">3</label>
+            <label><input type="radio" name="rating" value="4">4</label>
+            <label><input type="radio" name="rating" value="5">5</label>
+        </div>
+
         <button type="submit">Отправить</button>
     </form>
 </div>
 
-<div>
+<div class="reviews-list">
     {% if reviews %}
         {% for review in reviews %}
-            <div>
+            <div class="review-card">
                 <h3>{{ review.author.username }}</h3>
                 <p>{{ review.text }}</p>
                 <p>Оценка: {{ review.rating }}/5</p>
-                <hr>
             </div>
         {% endfor %}
     {% else %}
-        <p>Пока нет ни одного отзыва.</p>
+        <p class="no-reviews">Пока нет ни одного отзыва.</p>
     {% endif %}
 </div>
+
+<style>
+    body {
+        font-family: Georgia, serif;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    h1.reviews-title {
+        color: #4b0082;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .review-form-container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .review-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        border: 2px solid #4b0082;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .review-form input[type="text"],
+    .review-form textarea {
+        padding: 10px;
+        font-size: 1em;
+        border: 1px solid #aaa;
+        border-radius: 5px;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+
+    .review-form input[type="text"]:focus,
+    .review-form textarea:focus {
+        border-color: #4b0082; 
+    }
+
+    .rating {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .rating label {
+        cursor: pointer;
+    }
+
+    .review-form button {
+        padding: 10px 20px;
+        background-color: #4b0082;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .review-form button:hover { 
+        background-color: #6a00b8;
+    }
+
+    .reviews-list {
+        max-width: 600px;
+        margin: 40px auto 0 auto;
+    }
+
+    .review-card {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        background-color: #f9f9f9;
+    }
+
+    .review-card h3 {
+        margin: 0 0 10px 0;
+        color: #4b0082;
+    }
+
+    .review-card p {
+        margin: 0 0 10px 0;
+    }
+
+    .no-reviews {
+        font-style: italic;
+        color: #555;
+    }
+</style>
 {% endblock %}
