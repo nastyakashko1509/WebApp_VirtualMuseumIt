@@ -8,19 +8,51 @@
     <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
     <link rel="stylesheet" href="{% static 'base.css' %}">
     <link rel="stylesheet" href="{% static 'main.css' %}">
+    <script src="{% static 'js/slider.js' %}"></script>
 </head>
 <body>
     <header class="layout">
         <h1 class="company-title">- Музей информационных технологий -</h1>
         <img src="{% static 'images/logo.png' %}" height="150" width="700" class="logo">
         <br>
-        <div class="banner-container">
-            <div class="banner-slider">
-                <img src="{% static 'images/banner/banner1.jpg' %}" class="banner">
-                <img src="{% static 'images/banner/banner2.jpg' %}" class="banner">
-                <img src="{% static 'images/banner/banner3.jpg' %}" class="banner">
-                <img src="{% static 'images/banner/banner4.jpg' %}" class="banner">
-                <img src="{% static 'images/banner/banner5.jpg' %}" class="banner">
+        <div class="slider-container" 
+             data-delay="{{ slider_settings.delay }}" 
+             data-loop="{{ slider_settings.loop|yesno:'true,false' }}"
+             data-navs="{{ slider_settings.show_navs|yesno:'true,false' }}"
+             data-pags="{{ slider_settings.show_pagination|yesno:'true,false' }}"
+             data-auto="{{ slider_settings.auto_play|yesno:'true,false' }}"
+             data-stop-hover="{{ slider_settings.stop_on_hover|yesno:'true,false' }}">
+            
+            <div class="slider-wrapper">
+                <div class="slider-track">
+                    <div class="slide active" data-link="/news/">
+                        <img src="{% static 'images/banner/banner1.jpg' %}" alt="Слайд 1">
+                        <div class="slide-caption">Роботы - наши помощники</div>
+                    </div>
+                    <div class="slide" data-link="/about/">
+                        <img src="{% static 'images/banner/banner2.jpg' %}" alt="Слайд 2">
+                        <div class="slide-caption">Мир ИТ</div>
+                    </div>
+                    <div class="slide" data-link="/vacancies/">
+                        <img src="{% static 'images/banner/banner3.jpg' %}" alt="Слайд 3">
+                        <div class="slide-caption">Робототехника</div>
+                    </div>
+                    <div class="slide" data-link="/reviews/">
+                        <img src="{% static 'images/banner/banner4.jpg' %}" alt="Слайд 4">
+                        <div class="slide-caption">Человек в мире ИТ</div>
+                    </div>
+                    <div class="slide" data-link="/promocodes/">
+                        <img src="{% static 'images/banner/banner5.jpg' %}" alt="Слайд 5">
+                        <div class="slide-caption">Искусственный интеллект</div>
+                    </div>
+                </div>
+                
+                <button class="slider-nav prev" aria-label="Предыдущий слайд">‹</button>
+                <button class="slider-nav next" aria-label="Следующий слайд">›</button>
+                
+                <div class="slider-pagination"></div>
+                
+                <div class="slide-counter"></div>
             </div>
         </div>
         <hr>
