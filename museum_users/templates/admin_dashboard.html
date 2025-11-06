@@ -6,6 +6,74 @@
 {% block content %}
 <h1>Админская панель</h1>
 
+<h2>Настройки слайдера баннеров</h2>
+<form method="post" action="{% url 'admin_update_slider_settings' %}">
+    {% csrf_token %}
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; padding: 20px; border: 2px solid #ddd; border-radius: 10px;">
+        <div>
+            <h3>Основные настройки</h3>
+            
+            <div style="margin-bottom: 15px;">
+                <label for="delay"><strong>Задержка между слайдами (секунды):</strong></label>
+                <input type="number" id="delay" name="delay" value="{{ slider_settings.delay }}" 
+                       min="1" max="60" style="width: 80px; margin-left: 10px;">
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <label for="auto_play">
+                    <input type="checkbox" id="auto_play" name="auto_play" 
+                           {% if slider_settings.auto_play %}checked{% endif %}>
+                    Автопереключение слайдов
+                </label>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <label for="loop">
+                    <input type="checkbox" id="loop" name="loop" 
+                           {% if slider_settings.loop %}checked{% endif %}>
+                    Зациклить слайдер
+                </label>
+            </div>
+        </div>
+        
+        <div>
+            <h3>Элементы управления</h3>
+            
+            <div style="margin-bottom: 15px;">
+                <label for="show_navs">
+                    <input type="checkbox" id="show_navs" name="show_navs" 
+                           {% if slider_settings.show_navs %}checked{% endif %}>
+                    Показывать стрелки навигации
+                </label>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <label for="show_pagination">
+                    <input type="checkbox" id="show_pagination" name="show_pagination" 
+                           {% if slider_settings.show_pagination %}checked{% endif %}>
+                    Показывать пагинацию (точки)
+                </label>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <label for="stop_on_hover">
+                    <input type="checkbox" id="stop_on_hover" name="stop_on_hover" 
+                           {% if slider_settings.stop_on_hover %}checked{% endif %}>
+                    Останавливать при наведении мыши
+                </label>
+                <small style="display: block; color: #666;">Работает только при включенном автопереключении</small>
+            </div>
+        </div>
+    </div>
+    
+    <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+        Сохранить настройки слайдера
+    </button>
+</form>
+
+<hr style="margin: 30px 0;">
+
 <h2>Залы</h2>
 <table>
     <thead>

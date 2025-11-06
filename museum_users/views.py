@@ -218,3 +218,37 @@ def admin_dashboard(request):
         'date_filter': date_str,
     }
     return render(request, 'admin_dashboard.html', context)
+
+# Управление слайдером для админа
+
+from django.contrib.auth.decorators import user_passes_test
+
+def admin_check(user):
+    return user.is_staff or user.is_superuser
+
+@login_required
+@user_passes_test(admin_check)
+def admin_update_slider_settings(request):
+    if request.method == 'POST':
+        try:
+            settings = SliderSettings.objects.first()
+            if not settings:
+                settings = SliderSettings.objects.create()
+            
+            delay = request.POST.get('delay', 5)
+            settings.delay = int(delay) if delay.isdigit() else 5
+            
+            settings.auto_play = 'auto_play' in request.POST
+            settings.loop = 'loop' in request.POST
+            settings.show_navs = 'show_navs' in request.POST
+            settings.show_pagination = 'show_pagination' in request.POST
+            settings.stop_on_hover = 'stop_on_hover' in request.POST
+            
+            settings.save()
+            
+        except Exception as e:
+            pass
+        
+        return redirect('admin_dashboard')
+    
+    return redirect('admin_dashboard')

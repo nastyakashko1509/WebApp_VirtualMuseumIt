@@ -15,7 +15,8 @@ urlpatterns = [
     # Страницы суперюзера (админа)
     path('admin/', admin.site.urls),
     path('admin_dashboard/', admin_dashboard, name='admin_dashboard'),
-    
+    path('admin_dashboard/update-slider-settings/', admin_update_slider_settings, name='admin_update_slider_settings'),
+
     # Главная страница
     path('', home, name='home'),
 
