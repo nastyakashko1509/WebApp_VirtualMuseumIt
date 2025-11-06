@@ -39,3 +39,11 @@ build/
 
 # Environment variables
 .env
+
+*.exe
+*.dmg
+*.pkg
+
+.idea/
+*.swp
+*.swo

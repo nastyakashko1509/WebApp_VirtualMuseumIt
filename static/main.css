@@ -57,7 +57,6 @@ nav a + a {
 .partners-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 30px;
     padding: 20px;
 }
@@ -110,7 +109,8 @@ nav a + a {
     padding: 20px;
     max-width: 600px;
     background-color: #e5b8eb;
-    margin: 20px auto;
+    margin-top: 20px;
+    margin-bottom: 55px;
     border-radius: 8px;
 }
 
@@ -138,7 +138,7 @@ nav a + a {
     background-color: #fff;
     
     background-image: url("images/certificate-bg.jpg");
-    background-size: cover;
+    background-size: cover; /* фон занимает весь блок */
     background-position: center;
     
     background-image: linear-gradient(to bottom right, rgba(255,255,255,0.8), rgba(186, 186, 242, 0.8)), 
@@ -202,20 +202,22 @@ nav a + a {
     animation: fadeIn 2s ease-in;
 }
 
+.container {
+    width: 600px;
+    height: 600px;
+    perspective: 1200px; 
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(3, 150px);
     grid-template-rows: repeat(3, 150px);
-    gap: 10px;
+    gap: 40px;
     justify-content: center;
     align-items: center;
-}
-
-.center-sphere img {
-    margin-left: -4px;
-    width: 165px;
-    height: 165px;
-    animation: spin 10s linear infinite;
+    transform-style: preserve-3d;
+    animation: rotateRoom 40s linear infinite;
+    transform-origin: center center;
 }
 
 .picture {
@@ -225,9 +227,15 @@ nav a + a {
     background-position: center;
     border: 4px solid orange;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    animation: imageCycle 32s infinite ease-in-out;
+    animation: scaleEffect 5s infinite ease-in-out, imageCycle 32s infinite ease-in-out;
     transition: background-image 1s ease-in-out;
 }
+
+.center-sphere img { 
+    margin-left: -4px; 
+    width: 165px; 
+    height: 165px; 
+    animation: spin 10s linear infinite; }
 
 .p1 { animation-delay: 0s; }
 .p2 { animation-delay: 2s; }
@@ -238,14 +246,19 @@ nav a + a {
 .p7 { animation-delay: 12s; }
 .p8 { animation-delay: 14s; }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to   { opacity: 1; transform: translateY(0); }
+@keyframes rotateRoom {
+    from { transform: rotateY(0deg); }
+    to   { transform: rotateY(360deg); }
 }
 
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
+@keyframes spin { 
+    from { transform: rotate(0deg); } 
+    to { transform: rotate(360deg); } 
+}
+
+@keyframes scaleEffect {
+    0%, 100%   { transform: scaleZ(1); }
+    50%        { transform: scaleZ(2); }
 }
 
 @keyframes imageCycle {
@@ -274,29 +287,51 @@ nav a + a {
     width: 100px;
     height: 100px;
     position: relative;
-    margin: 50px auto;  
+    margin: 20px auto;  
+    z-index: 1000; 
+    transform-style: flat;
 }
 
 .preloader .circle {
-    border: 4px solid #0056b3; 
     border-radius: 50%;         
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transform-style: flat;
 }
 
+.preloader .circle1 { width: 100px; height: 100px; }
+.preloader .circle2 { width: 70px; height: 70px; }
+.preloader .circle3 { width: 40px; height: 40px; }
+
 .preloader .circle1 {
-    width: 100px;
-    height: 100px;
+    border: 4px solid transparent;
+    border-top-color: purple;
+    border-right-color: purple;
+    animation: rotateClockwise 2s linear infinite;
 }
 
 .preloader .circle2 {
-    width: 70px;
-    height: 70px;
+    border: 4px solid transparent;
+    border-top-color: orange;
+    border-right-color: orange;
+    animation: rotateCounter 3s linear infinite;
 }
 
 .preloader .circle3 {
-    width: 40px;
-    height: 40px;
+    border: 4px solid transparent;
+    border-top-color: greenyellow;
+    border-right-color: greenyellow;
+    animation: rotateClockwise 1.5s linear infinite;
+}
+
+@keyframes rotateClockwise {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes rotateCounter {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(-360deg); }
 }
