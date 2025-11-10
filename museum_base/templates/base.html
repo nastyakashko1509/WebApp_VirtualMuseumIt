@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'base.css' %}">
     <link rel="stylesheet" href="{% static 'main.css' %}">
     <script src="{% static 'js/slider.js' %}"></script>
+    <script src="{% static 'js/theme.js' %}" defer></script>
 </head>
 <body>
     <header class="layout">
@@ -68,7 +69,8 @@
             <a href="{% url 'faq_list' %}">Вопросы</a> |
             <a href="{% url 'promocodes' %}">Промокоды</a> |
             <a href="{% url 'museum_info' %}">Полезная информация</a> |
-            <a href="{% url 'privacy_policy' %}">Политика конфиденциальности</a>
+            <a href="{% url 'privacy_policy' %}">Политика конфиденциальности</a> |
+            <button id="theme-toggle">🌙 Тёмная тема</button>
     </nav>
 
     <div class="content-wrapper">

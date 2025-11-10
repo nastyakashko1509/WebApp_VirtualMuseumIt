@@ -3,6 +3,26 @@ body {
     padding-top: 50px;
 }
 
+body.dark {
+    background-color: rgb(50, 104, 148);
+    color: #ffffff;
+}
+
+#theme-toggle {
+    top: 10px;
+    right: 10px;
+    background-color: #ddd;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+body.dark #theme-toggle {
+    background-color: #333;
+    color: #fff;
+}
+
 .content-wrapper {
     display: flex;
     align-items: stretch; 
