@@ -6,533 +6,121 @@
     <meta charset="UTF-8">
     <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
     <title>Дополнительная страница</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.3.1"></script>
+    <script src="{% static 'js/graphics.js' %}" defer></script>
 
     <style>
-        ul li:first-child { 
-            color: red; 
-        }
-        ul li:nth-child(2) { 
-            color: orange; 
-        }
-        ul li:nth-child(3) { 
-            color: yellow; 
-        }
-        ul li:nth-child(4) { 
-            color: green; 
-        }
-        ul li:nth-child(5) { 
-            color: blue; 
-        }
-        ul li:nth-child(6) { 
-            color: darkblue; 
-        }
-        ul li:last-child { 
-            color: purple; 
-        }
-
-        ol li:nth-child(odd) { 
-            background-color: aqua; 
-        }
-        ol li:nth-child(even) { 
-            background-color: pink; 
-        }
-
-        dl dd:nth-child(2n) { 
-            background-color: lightgreen; 
-        }
-
-        h3:only-child { 
-            background-color: greenyellow; 
-        }
-
-        thead th:first-of-type { 
-            background-color: darkred; 
-            color: white; 
-        }
-        thead th:last-of-type { 
-            background-color: darkblue; 
-            color: white; 
-        }
-
-        tbody td:first-of-type { 
-            font-weight: bold; 
-            background-color: lightpink; 
-        }
-        tbody td:last-of-type { 
-            font-style: italic; 
-            background-color: lightblue; 
-        }
-
-        tbody td:nth-of-type(2n+1) { 
-            border-right: 2px solid #ccc; 
-        }
-        tbody td:nth-of-type(2n) { 
-            border-left: 2px solid #ccc; 
-        }
-
-        tbody tr:nth-of-type(1) td:first-of-type { color: red; }
-        tbody tr:nth-of-type(2) td:first-of-type { color: orange; }
-        tbody tr:nth-of-type(3) td:first-of-type { color: green; }
-        tbody tr:nth-of-type(4) td:first-of-type { color: blue; }
-        tbody tr:nth-of-type(5) td:first-of-type { color: purple; }
-
-        tbody tr:last-of-type td:last-of-type { 
-            background-color: plum; 
-        }
-
-        input:enabled {
-            background-color: lightgreen;
-        }
-
-        input:disabled {
-            background-color: lightcoral;
-        }
-
-        input:checked + label {
-            font-weight: bold;
-            color: green;
-        }
-
-        input:default {
-            outline: 2px dashed orange;
-        }
-
-        input:valid {
-            border: 2px solid green;
-        }
-
-        input:invalid {
-            border: 2px solid red;
-        }
-
-        input:in-range {
-            background-color: #e0f7ff;
-        }
-
-        input:out-of-range {
-            background-color: #fff0f0;
-        }
-
-        input:required {
-            border-left: 4px solid blue;
-        }
-
-        input:optional {
-            border-left: 4px solid gray;
-        }
-
-        .form-block {
-            margin-top: 30px;
-            padding: 20px;
-            border: 2px dashed #888;
-            background-color: #f9f9f9;
-        }
-
-        .form-block h2 {
-            margin-bottom: 10px;
-            color: darkmagenta;
-        }
-
-        .form-block label {
-            display: block;
-            margin: 10px 0 5px;
-        }
-
-        q:lang(ru) {
-            quotes: "«" "»" "„" "“";
-        }
-        q:lang(en) {    
-            quotes: "\201C" "\201D";    
-        } 
-
         body {
-            font-family: Georgia, serif;
-            margin: 40px;
-            padding: 0;
-            line-height: 1.6; 
-            word-spacing: 0.2em; 
-            letter-spacing: 0.05em; 
-            hyphens: auto; 
-            text-align: justify; 
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f4f8;
+            color: #1f2d3d;
         }
 
-        h1, h2, h3 {
-            text-transform: uppercase; 
-            margin-bottom: 10px;
+        h2 {
+            text-align: center;
+            color: #1f77b4;
         }
 
-        p, li, dd {
-            text-indent: 2em; 
-            margin-bottom: 10px;
+        form {
+            margin: 20px auto;
+            text-align: center;
         }
 
-        .caps {
-            font-variant: small-caps; 
+        form input {
+            margin: 0 10px;
+            padding: 5px;
+            width: 100px;
+            border: 2px solid #1f77b4;
+            border-radius: 4px;
+            transition: border-color 0.3s;
         }
 
-        .text-box {
-            border: 2px solid #ccc;
-            padding: 15px;
-            margin: 20px 0;
-            background-color: #f4f4f4;
-            position: relative;
+        form input:focus {
+            outline: none;
+            border-color: #0056b3;
         }
 
-        .left-block {
-            float: left;
-            width: 45%;
-            margin-right: 5%;
+        form input.error {
+            border-color: red;
         }
 
-        .right-block {
-            float: right;
-            width: 45%;
+        form button {
+            padding: 5px 15px;
+            cursor: pointer;
+            background-color: #1f77b4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
         }
 
-        .clearfix::after {
-            content: "";
-            display: table;
-            clear: both;
+        form button:hover {
+            background-color: #0056b3;
         }
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+        #tableContainer {
+            margin: 30px auto;
+            width: 90%;
+            text-align: center;
+            overflow-x: auto;
         }
 
-        .grid-item {
-            background-color: #eef;
-            padding: 20px;
-            border: 1px solid #ccc;
+        table, th, td {
+            border: 1px solid #1f77b4;
+            border-collapse: collapse;
+            padding: 5px;
+            text-align: center;
         }
 
-        @media (max-width: 1200px) {
-            body { 
-                font-size: 18px; 
-                margin: 30px;
-            }
-            .form-block { 
-                padding: 15px; 
-            }
-            .left-block, .right-block {
-                width: 48%;
-                margin-right: 2%;
-            }
-            .grid-container {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 15px;
-            }
+        th {
+            background-color: #cce5ff;
+            color: #1f2d3d;
         }
 
-        @media (max-width: 992px) {
-            body { 
-                font-size: 16px; 
-                margin: 25px;
-                line-height: 1.5;
-            }
-            h1, h2, h3 {
-                font-size: 0.9em;
-            }
-            .form-block { 
-                padding: 12px; 
-            }
-            .left-block, .right-block {
-                width: 100%;
-                float: none;
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
-            .grid-container {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 12px;
-            }
-            .text-box {
-                padding: 12px;
-                margin: 15px 0;
-            }
+        td {
+            background-color: #e6f0ff;
         }
 
-        @media (max-width: 768px) {
-            body { 
-                font-size: 14px; 
-                margin: 20px;
-                line-height: 1.4;
-                word-spacing: 0.1em;
-                letter-spacing: 0.03em;
-            }
-            h1, h2, h3 {
-                font-size: 0.85em;
-                margin-bottom: 8px;
-            }
-            ul, ol { 
-                padding-left: 15px; 
-            }
-            table { 
-                font-size: 12px; 
-            }
-            .form-block { 
-                padding: 10px; 
-                margin-top: 20px;
-            }
-            .grid-container {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-            .grid-item {
-                padding: 15px;
-            }
-            .text-box {
-                padding: 10px;
-                margin: 12px 0;
-            }
-            p, li, dd {
-                text-indent: 1.5em;
-                margin-bottom: 8px;
-            }
+        #chart-container {
+            width: 90%;
+            margin: 30px auto;
+            text-align: center;
         }
 
-        @media (max-width: 576px) {
-            body { 
-                font-size: 12px; 
-                margin: 15px;
-                line-height: 1.3;
-            }
-            h1, h2, h3 {
-                font-size: 0.8em;
-                margin-bottom: 5px;
-            }
-            ul, ol { 
-                padding-left: 10px; 
-            }
-            table { 
-                font-size: 11px; 
-            }
-            .form-block { 
-                padding: 8px; 
-                margin-top: 15px;
-            }
-            .grid-container {
-                gap: 8px;
-            }
-            .grid-item {
-                padding: 10px;
-            }
-            .text-box {
-                padding: 8px;
-                margin: 10px 0;
-            }
-            p, li, dd {
-                text-indent: 1em;
-                margin-bottom: 6px;
-            }
-            input, button {
-                font-size: 12px;
-            }
+        #saveChart {
+            margin-top: 10px;
+            padding: 5px 15px;
+            cursor: pointer;
+            background-color: #1f77b4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
         }
 
-        @media (max-height: 500px) and (max-width: 768px) {
-            body { 
-                font-size: 11px; 
-                margin: 10px;
-            }
-            .form-block { 
-                padding: 5px; 
-            }
-            h1, h2, h3 {
-                font-size: 0.75em;
-            }
+        #saveChart:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <div>
-        <h2>Мои мечты:</h2>
-        <ul>
-            <li>Иметь большую и дружную семью</li>
-            <li>Устроиться на работу, которая будет в радость</li>
-            <li>Посетить все диснейленды мира</li>
-            <li>Иметь много-много лего</li>
-            <li>Путешествовать и развиваться</li>
-            <li>Найти своего человека</li>
-            <li>Чтобы все в этом мире были здоровы</li>
-        </ul> 
-    </div>  
+    <h2>Разложение функции arccos(x) в ряд</h2>
 
-    <div>
-        <h2>Действия, которые необходимы, чтобы мечты осуществились:</h2>
-        <ol>
-            <li>Поддерживать родных и близких</li>
-            <li>Развиваться и пробовать себя в новых сферах</li>
-            <li>Ходить на различные мероприятия и знакомиться с новыми людьми</li>
-            <li>Заниматься спортом и думать только о хорошем</li>
-        </ol>
+    <form id="inputForm">
+        <label for="xMax">Максимальное x (от -1 до 1): </label>
+        <input type="number" step="0.01" id="xMax" required>
+        <p><label for="nMax">Количество членов ряда n (целое > 0): </label>
+        <input type="number" id="nMax" required>
+        <p><button type="submit">Построить</button>
+    </form>
+
+    <div id="chart-container">
+        <canvas id="functionChart" width="800" height="400"></canvas>
+        <button id="saveChart">Сохранить график</button>
     </div>
 
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Мечта</th>
-                    <th>Действие</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Семья</td><td>Поддержка родных</td></tr>
-                <tr><td>Любимая работа</td><td>Развитие и проба нового</td></tr>
-                <tr><td>Путешествия</td><td>Смелость и планирование</td></tr>
-                <tr><td>Личностный рост</td><td>Чтение, спорт</td></tr>
-                <tr><td>Здоровье</td><td>Правильное питание</td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div>
-        <h2>Мои прошлые мечты (то есть они уже осуществились):</h2>
-        <dl>
-            <dd>1. Поступить в университет на бюджет</dd>
-            <dd>2. Побывать за границей</dd>
-            <dd>3. Дайвинг</dd>
-            <dd>4. Полёт на самолёте</dd>
-        </dl>
-    </div>
-
-    <div>
-        <h2>Мысли счастливого человека (зелёный цвет) и не совсем (красный цвет):</h2>
-        <div>
-            <h3>Я единственная и неповторимая!</h3>
-        </div>
-        <div>
-            <h3 style="background-color: tomato;">Я такая же как и все!</h3>
-            <h3 style="background-color: tomato;">Во мне нет ничего особенного</h3>
-        </div>
-    </div>   
-
-    <div class="form-block">
-        <h2>Форма исполнения мечт</h2>
-        <form>
-            <label for="enabled">Ваше имя:</label>
-            <input type="text" id="enabled" name="name" placeholder="Введите имя" enabled>
-
-            <label for="disabled">Ваш ID (нельзя изменить):</label>
-            <input type="text" id="disabled" name="user_id" value="12345" disabled>
-
-            <label>Пол:</label>
-            <input type="radio" id="male" name="gender" value="male" checked>
-            <label for="male">Мужской</label>
-
-            <input type="radio" id="female" name="gender" value="female">
-            <label for="female">Женский</label>
-
-            <label for="email">Электронная почта:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="age">Возраст (от 18 до 60):</label>
-            <input type="number" id="age" name="age" min="18" max="60">
-
-            <label for="password">Пароль (обязательно):</label>
-            <input type="password" id="password" name="password" required>
-
-            <label for="comment">Комментарий (необязательно):</label>
-            <input type="text" id="comment" name="comment">
-
-            <br><br>
-            <button type="submit">Отправить</button>
-        </form>
-    </div>
-
-    <div>
-        <br>
-        <a href="#section1">Перейти к секции 1</a>
-        <a href="#section2">Перейти к секции 2</a>
-
-        <div id="section1">Секция 1</div>
-        <div id="section2">Секция 2</div>
-
-        <style>
-        div:target {
-            background-color: yellow; 
-        }
-        </style>
-    </div>
-
-    <div class="text-box caps">
-        <p>Каждая мечта начинается с первого шага. Верь в себя, иди вперёд и помни — невозможное возможно. Смелость, упорство и доброе сердце открывают любые двери.</p>
-    </div>
-
-    <div class="clearfix">
-        <div class="left-block">
-            <p>Ты не один. Вокруг тебя есть те, кто верит в твои мечты и готов поддержать. Стань поддержкой для других, и она вернётся к тебе.</p>
-        </div>
-        <div class="right-block">
-            <p>Путь к мечте может быть долгим, но каждый шаг делает тебя сильнее. Радуйся каждому дню, ведь он приближает тебя к цели.</p>
-        </div>
-    </div>
-
-    <div class="grid-container">
-        <div class="grid-item">💡 Идея — начало пути</div>
-        <div class="grid-item">🛠 Действие — важный шаг</div>
-        <div class="grid-item">💬 Поддержка — сила в людях</div>
-        <div class="grid-item">🎯 Мечта — то, ради чего ты живёшь</div>
-    </div>
-
-    <div>
-        <style>
-            .white_space_1 {
-                white-space: pre;
-            }
-            .white_space_2 {
-                white-space: nowrap;
-            }
-            .white_space_3 {
-                white-space: pre-line;
-            }
-            .white_space_4 {
-                white-space: pre-wrap;
-            }
-        </style>
-        <hr color="#e7d90d">
-        <p class="white_space_1">
-            Мечты   мечты   мечты   мечты   мечты   мечты   мечты   мечты   мечты   мечты   мечты   мечты   мечты   мечты   мечты   мечты   мечты   мечты   мечты 
-            мечты   мечты   мечты
-        </p>
-
-        <hr color="#e7d90d">
-        <p class="white_space_2">
-            Мечты   мечты   мечты   мечты
-            мечты   мечты   мечты
-        </p>
-
-        <hr color="#e7d90d">
-        <p class="white_space_3">
-            Мечты   мечты   мечты   мечты    мечты   мечты   мечты    мечты   мечты   мечты    мечты   мечты   мечты    мечты   мечты   мечты    мечты   мечты   мечты
-        </p>
-
-        <hr color="#e7d90d">
-        <p class="white_space_4">
-            Мечты   мечты   мечты   мечты    мечты   мечты   мечты    мечты   мечты   мечты    мечты   мечты   мечты    мечты   мечты   мечты    мечты   мечты   мечты
-        </p>
-
-        <hr color="#e7d90d">
-        <div style="background-color: #eef;
-                    padding: 20px;
-                    border: 1px solid #ccc;
-                    width: 30px;">
-            Мечтатьмечтать
-        </div>
-
-        <hr color="#e7d90d">
-        <div style="background-color: #eef;
-                    padding: 20px;
-                    border: 1px solid #ccc;
-                    width: 30px;
-                    word-wrap: break-word;">
-            Мечтатьмечтать
-        </div>
-
-        <hr color="#e7d90d">
-    </div>
-    <br>
-    <a href="{% url 'home' %}">← Вернуться на главную</a>
+    <div id="tableContainer"></div>
 </body>
-</html>
+</html>      
