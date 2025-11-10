@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const xInput = document.getElementById('xMax');
     const nInput = document.getElementById('nMax');
     const ctx = document.getElementById('functionChart').getContext('2d');
-    let functionChart;
+    let functionChart; // переменная для объекта Chart.js для удаления/обновления графика
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (hasError) return;
 
-        const steps = 50;
+        const steps = 50; // кол-во точек на графике
         const xValues = [];
         const fSeries = [];
         const fExact = [];
@@ -50,15 +50,16 @@ document.addEventListener('DOMContentLoaded', () => {
             fExact.push(Math.acos(x));
         }
 
+        // график
         if (functionChart) functionChart.destroy();
         functionChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: [],
+                labels: [], // х
                 datasets: [
                     {
                         label: `Ряд (n=${nMax})`,
-                        data: [],
+                        data: [], // у
                         borderColor: '#1f77b4',
                         backgroundColor: 'rgba(31,119,180,0.2)',
                         fill: false,
@@ -66,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     {
                         label: 'Точная функция',
-                        data: [],
+                        data: [], // у
                         borderColor: '#ff7f0e',
                         backgroundColor: 'rgba(255,127,14,0.2)',
                         fill: false,
@@ -78,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 responsive: true,
                 animation: { duration: 0 }, 
                 plugins: {
-                    legend: { display: true, position: 'top' },
                     title: { display: true, text: 'Сравнение ряда и точной функции arccos(x)', color: '#1f77b4', font: { size: 18 } },
                     annotation: {
                         annotations: {
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const interval = setInterval(() => {
             if (index >= xValues.length) {
                 clearInterval(interval);
-                buildTable(xValues, fSeries, fExact, nMax); // таблица после анимации
+                buildTable(xValues, fSeries, fExact, nMax); 
                 return;
             }
 
