@@ -6,8 +6,8 @@
 <h2>Шутка о программировании</h2>
 
 <div>
-    <div><strong>{{ joke.setup }}</strong></div>
-    <div>{{ joke.punchline }}</div>
+    <div id="setup"><strong>{{ joke.setup }}</strong></div>
+    <div id="punchline">{{ joke.punchline }}</div>
 
     {% if gif_url %}
         <div>
@@ -18,5 +18,11 @@
     <form method="get">
         <button type="submit">Ещё шутку</button>
     </form>
+
+    <button id="speakJoke">Озвучить шутку</button>
+
+    <div id="batteryInfo" style="margin-top:20px; font-size:16px; color:#1f77b4;">
+        Информация о батарее загружается...
+    </div>
 </div>
 {% endblock %}
