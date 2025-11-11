@@ -1,8 +1,7 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Регистрация клиента{% endblock %}
-
-<script src="{% static 'js/check_date.js' %}"></script>
 
 {% block content %}
 <h2>Регистрация клиента музея</h2>
@@ -37,4 +36,6 @@
     <div id="parentConsentContainer"></div>
     <input type="hidden" name="parent_consent" id="parentConsentInput" value="false">
 </form>
+
+<script src="{% static 'js/check_date.js' %}"></script>
 {% endblock %}
