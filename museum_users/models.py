@@ -19,9 +19,10 @@ class Client(BaseModel):
         through='ClientTicket',
         related_name='clients'
     )
+    parent_consent = models.BooleanField(default=False)
 
     def clean(self):
-        super().clean()  
+        super().clean()
 
         if self.phone:
             pattern = r'^\+375 \((25|29|33|44)\) \d{3}-\d{2}-\d{2}$'
@@ -29,11 +30,12 @@ class Client(BaseModel):
                 raise ValidationError({
                     'phone': 'Номер телефона должен быть в формате +375 (29) XXX-XX-XX'
                 })
-            
+
         today = timezone.now().date()
         age = today.year - self.date_of_birth.year - ((today.month, today.day) < (self.date_of_birth.month, self.date_of_birth.day))
-        if age < 18:
-            raise ValidationError("Возраст клиента должен быть не менее 18 лет.")
+        
+        if age < 18 and not self.parent_consent:
+            raise ValidationError("Для клиентов младше 18 лет необходимо согласие родителя.")
 
 
 class ClientTicket(BaseModel):

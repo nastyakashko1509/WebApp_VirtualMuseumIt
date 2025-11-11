@@ -108,6 +108,7 @@ def register_client(request):
         full_name = request.POST.get('full_name')
         date_of_birth = request.POST.get('date_of_birth')
         phone = request.POST.get('phone')
+        parent_consent = request.POST.get('parent_consent') == 'true'
 
         form_values = {
             'username': username,
@@ -137,7 +138,8 @@ def register_client(request):
             full_name=full_name,
             email=email,
             date_of_birth=date_of_birth,
-            phone=phone
+            phone=phone,
+            parent_consent=parent_consent
         )
 
         try:

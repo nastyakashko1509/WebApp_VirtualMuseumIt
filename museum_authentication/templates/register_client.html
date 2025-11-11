@@ -2,6 +2,8 @@
 
 {% block title %}Регистрация клиента{% endblock %}
 
+<script src="{% static 'js/check_date.js' %}"></script>
+
 {% block content %}
 <h2>Регистрация клиента музея</h2>
 
@@ -31,5 +33,8 @@
     <input type="tel" name="phone" required value="{{ form_values.phone_number|default:'' }}"><br><br>
 
     <button type="submit">Зарегистрироваться</button>
+
+    <div id="parentConsentContainer"></div>
+    <input type="hidden" name="parent_consent" id="parentConsentInput" value="false">
 </form>
 {% endblock %}
