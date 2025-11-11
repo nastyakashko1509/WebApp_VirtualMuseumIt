@@ -10,7 +10,7 @@
         <h2>Список проводимых экскурсий</h2>
         <div class="tour-grid">
             {% for tour in tours %}
-                <div class="tour-card">
+                <div class="tour-card interactive-card">
                     <strong>{{ tour.title }}</strong> — {{ tour.topic }}<br>
                     Время начала: {{ tour.start_time }} — Время окончания: {{ tour.end_time }}<br>
                     <em>Билеты:</em>
@@ -164,7 +164,7 @@
         <h2 style="text-align: center;">Наши партнёры</h2>
         <div class="partners-list">
             {% for partner in partners %}
-                <div class="partner">
+                <div class="partner interactive-card">
                     {% if partner.photo_logo %}
                         <img src="{{ partner.photo_logo.url }}" alt="{{ partner.name }}">
                     {% endif %}

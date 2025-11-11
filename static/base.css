@@ -1,6 +1,6 @@
 body {
     background-color: rgb(225, 236, 245);
-    padding-top: 50px;
+    padding-top: 60px;
 }
 
 body.dark {
@@ -64,7 +64,7 @@ header > h1 {
     text-align: center;
     background-color: rgb(185, 212, 234);
     margin: 0;
-    padding: 10px 0;
+    padding: 25px 0;
     font-family: 'Georgia', serif;                   
     letter-spacing: 1px; 
 }
@@ -93,7 +93,7 @@ footer h3 {
 
 main {
     flex: 1;
-    padding: 20px;
+    padding: 30px;
     order: 1;
 }
 

@@ -7,9 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if ('speechSynthesis' in window) {
         speakButton.addEventListener('click', () => {
             const utterance = new SpeechSynthesisUtterance(`${setup}. ${punchline}`);
-            utterance.lang = 'ru-RU';
-            utterance.rate = 1;
-            utterance.pitch = 1;
+            utterance.lang = 'en-US';
+            utterance.rate = 1; // скорость речи
+            utterance.pitch = 1; // высота речи
             window.speechSynthesis.speak(utterance);
         });
     } else {
