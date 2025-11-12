@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Сотрудники музея{% endblock %}
+
+{% block content %}
+<h2 class="employees-title">Сотрудники музея</h2>
+
+<div class="employees-controls">
+    <button id="addEmployeeBtn">Добавить сотрудника</button>
+</div>
+
+<div id="addEmployeeFormWrapper" class="add-employee-form-wrapper" style="display:none;">
+    <form id="addEmployeeForm">
+        <label>ФИО:
+            <input type="text" id="empFullName" required>
+        </label>
+        <label>Фото (URL):
+            <input type="text" id="empPhotoUrl" required>
+        </label>
+        <label>Описание работы:
+            <textarea id="empWorkDesc" required></textarea>
+        </label>
+        <label>Телефон:
+            <input type="text" id="empPhone" required>
+        </label>
+        <label>Почта:
+            <input type="email" id="empEmail" required>
+        </label>
+        <button type="button" id="submitEmployeeBtn">Добавить в таблицу</button>
+        <div id="validationResult"></div>
+    </form>
+</div>
+
+<div class="employees-filter">
+    <input type="text" id="searchInput" placeholder="Фильтр по имени или должности">
+    <button id="filterBtn">Найти</button>
+</div>
+
+<div class="preloader" id="preloader" style="display:none;">
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+</div>
+
+<table id="employeesTable">
+    <thead>
+        <tr>
+            <th>Выбрать</th>
+            <th data-sort="full_name">Имя</th>
+            <th data-sort="age">Возраст</th>
+            <th data-sort="position">Должность</th>
+            <th>Телефон</th>
+            <th>Email</th>
+            <th>Bio</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<button id="awardBtn">Премировать выбранных</button>
+<div id="awardResult"></div>
+<div id="selectedDetails"></div>
+
+<style>
+    .employees-title { text-align:center; color:#4b0082; margin-bottom:20px; font-family: Georgia, serif; }
+    .employees-controls { text-align:center; margin-bottom: 10px; }
+    .add-employee-form-wrapper { border: 2px solid #4b0082; padding: 15px; margin: 10px auto 20px auto; border-radius: 10px; max-width: 600px; }
+    .add-employee-form-wrapper label { display:block; margin-bottom: 10px; }
+    .add-employee-form-wrapper input, .add-employee-form-wrapper textarea { width:100%; padding:5px; margin-top:3px; }
+    .invalid { border-color:red; background-color:#ffc0cb; }
+    #validationResult { margin-top:10px; font-weight:bold; color:red; }
+
+    .employees-filter { text-align:center; margin-bottom: 20px; }
+    #searchInput { padding:5px; width:250px; }
+    #filterBtn { padding:5px 10px; }
+
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    th, td { border: 1px solid #4b0082; padding: 8px; text-align: left; }
+    th { cursor: pointer; background-color: #e0e0ff; }
+    th.sorted-asc::after { content: " ↑"; }
+    th.sorted-desc::after { content: " ↓"; }
+    .employee-row:hover { background-color: #f0f0ff; cursor: pointer; }
+
+    .preloader { width: 80px; height: 80px; margin:20px auto; position: relative; }
+    .preloader .circle { border-radius:50%; position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); }
+    .preloader .circle1 { width:80px; height:80px; border:4px solid transparent; border-top-color: purple; border-right-color: purple; animation: rotateClockwise 2s linear infinite; }
+    .preloader .circle2 { width:55px; height:55px; border:4px solid transparent; border-top-color: orange; border-right-color: orange; animation: rotateCounter 3s linear infinite; }
+    .preloader .circle3 { width:30px; height:30px; border:4px solid transparent; border-top-color: greenyellow; border-right-color: greenyellow; animation: rotateClockwise 1.5s linear infinite; }
+    @keyframes rotateClockwise {0% { transform: translate(-50%, -50%) rotate(0deg);} 100% { transform: translate(-50%, -50%) rotate(360deg); }}
+    @keyframes rotateCounter {0% { transform: translate(-50%, -50%) rotate(0deg);} 100% { transform: translate(-50%, -50%) rotate(-360deg); }}
+
+    .invalid { border: 2px solid red !important; background-color: pink !important; }
+</style>
+
+<script src="{% static 'js/employees.js' %}"></script>
+{% endblock %}

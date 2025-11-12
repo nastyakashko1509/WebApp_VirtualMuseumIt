@@ -24,6 +24,8 @@ urlpatterns = [
     path('additional_page/', additional_page_view, name='additional_page'),
     path('toys/', toys_view, name='toys'),
     path('checkboxes/', checkbox_generator, name='checkbox_generator'),
+    path('employee_task3/', employee_task3, name='employee_task3'),
+    path('api/employees/', employees_api, name='employees_api'),
 
     # Страница с общедоступной информацией
     path('museum_info/', museum_info, name='museum_info'),

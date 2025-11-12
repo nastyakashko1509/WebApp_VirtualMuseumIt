@@ -71,18 +71,11 @@ class Employee(BaseModel):
     def __str__(self):
         return f"{self.full_name}"
     
+    def age(self):
+        today = timezone.now().date()
+        return today.year - self.date_of_birth.year - ((today.month, today.day) < (self.date_of_birth.month, self.date_of_birth.day))
+    
     def clean(self):
         super().clean()  
-
-        if self.phone:
-            pattern = r'^\+375 \((25|29|33|44)\) \d{3}-\d{2}-\d{2}$'
-            if not re.match(pattern, self.phone):
-                raise ValidationError({
-                    'phone': 'Номер телефона должен быть в формате +375 (29) XXX-XX-XX'
-                })
-            
-        today = timezone.now().date()
-        age = today.year - self.date_of_birth.year - ((today.month, today.day) < (self.date_of_birth.month, self.date_of_birth.day))
-        if age < 18:
+        if self.age() < 18:
             raise ValidationError("Возраст сотрудника должен быть не менее 18 лет.")
-    

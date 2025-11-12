@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     trigger.addEventListener('change', () => {
         if (trigger.checked) {
             const newBoxData = {
-                name: 'checkbox_' + Date.now(),
+                name: 'checkbox_' + Date.now(), // + текущее время в мс
                 value: 'yes',
                 checked: false,
                 required: false,
