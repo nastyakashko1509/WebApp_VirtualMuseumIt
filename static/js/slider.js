@@ -8,10 +8,9 @@ class MuseumSlider {
         this.pagination = container.querySelector('.slider-pagination');
         this.counter = container.querySelector('.slide-counter');
         
-        // Настройки из data-атрибутов
         this.settings = {
             delay: parseInt(container.dataset.delay) * 1000 || 5000,
-            loop: container.dataset.loop === 'true',
+            loop: container.dataset.loop === 'true', // === '' для перевода в булевое значение
             showNavs: container.dataset.navs === 'true',
             showPagination: container.dataset.pags === 'true',
             autoPlay: container.dataset.auto === 'true',
@@ -26,21 +25,18 @@ class MuseumSlider {
     }
     
     init() {
-        // Инициализация элементов управления
+        // создание необходимых элементов управления
         this.setupNavigation();
         this.setupPagination();
         this.setupCounter();
         this.applySettings();
         
-        // Запуск автоплея
-        if (this.settings.autoPlay) {
+        if (this.settings.autoPlay) { 
             this.startAutoPlay();
         }
         
-        // Обработчики событий
-        this.setupEventListeners();
+        this.setupEventListeners(); 
         
-        // Показ первого слайда
         this.showSlide(0);
     }
     
@@ -61,8 +57,7 @@ class MuseumSlider {
             return;
         }
         
-        // Создаем точки пагинации
-        this.slides.forEach((_, index) => {
+        this.slides.forEach((_, index) => { // _ - сам элемент не используется
             const dot = document.createElement('button');
             dot.className = 'pagination-dot';
             dot.addEventListener('click', () => this.showSlide(index));
@@ -72,12 +67,11 @@ class MuseumSlider {
         this.updatePagination();
     }
     
-    setupCounter() {
+    setupCounter() { // вызывается 1 раз при инициализации
         this.updateCounter();
     }
     
     applySettings() {
-        // Применяем настройки видимости
         if (!this.settings.showNavs) {
             this.prevBtn.style.display = 'none';
             this.nextBtn.style.display = 'none';
@@ -89,32 +83,18 @@ class MuseumSlider {
     }
     
     setupEventListeners() {
-        // Остановка автоплея при наведении
         if (this.settings.autoPlay && this.settings.stopOnHover) {
             this.container.addEventListener('mouseenter', () => this.stopAutoPlay());
             this.container.addEventListener('mouseleave', () => this.startAutoPlay());
         }
-        
-        // Клик по слайду для перехода по ссылке
-        this.slides.forEach(slide => {
-            slide.addEventListener('click', () => {
-                const link = slide.dataset.link;
-                if (link) {
-                    window.location.href = link;
-                }
-            });
-        });
     }
     
     showSlide(index) {
-        // Скрываем все слайды
         this.slides.forEach(slide => slide.classList.remove('active'));
         
-        // Показываем выбранный слайд
         this.slides[index].classList.add('active');
         this.currentIndex = index;
         
-        // Обновляем UI
         this.updatePagination();
         this.updateCounter();
     }
@@ -172,21 +152,8 @@ class MuseumSlider {
             this.autoPlayInterval = null;
         }
     }
-    
-    // Метод для обновления настроек (может пригодиться для админки)
-    updateSettings(newSettings) {
-        this.settings = { ...this.settings, ...newSettings };
-        this.applySettings();
-        
-        // Перезапускаем автоплей если нужно
-        this.stopAutoPlay();
-        if (this.settings.autoPlay) {
-            this.startAutoPlay();
-        }
-    }
 }
 
-// Инициализация слайдера при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
     const sliderContainer = document.querySelector('.slider-container');
     if (sliderContainer) {

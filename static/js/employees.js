@@ -20,10 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const empEmail = document.getElementById('empEmail');
 
     let employees = [];
-    let sortField = '';
-    let sortAsc = true;
+    let sortField = ''; // поле для сортировки
+    let sortAsc = true; // направление сортировки
 
-    // Показать преоладер и имитация задержки загрузки
     preloader.style.display = 'block';
     setTimeout(() => {
         fetch('/api/employees/')
@@ -36,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3000); // 3 секунды задержки
 
     function renderTable(data) {
-        tableBody.innerHTML = '';
+        tableBody.innerHTML = ''; // очистка таблицы
         data.forEach((emp, index) => {
             const tr = document.createElement('tr');
             tr.classList.add('employee-row');
@@ -70,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return tdEl;
     }
 
-    // Сортировка по столбцам
+    // сортировка по столбцам
     document.querySelectorAll('#employeesTable th[data-sort]').forEach(th => {
         th.addEventListener('click', () => {
             const field = th.dataset.sort;
@@ -90,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Фильтр
+    // фильтр
     filterBtn.addEventListener('click', () => {
         const term = filterInput.value.toLowerCase();
         const filtered = employees.filter(emp => 
@@ -99,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderTable(filtered);
     });
 
-    // Премирование выбранных
+    // премирование выбранных
     awardBtn.addEventListener('click', () => {
         const awarded = [];
         tableBody.querySelectorAll('tr').forEach((tr, idx) => {
@@ -109,17 +108,15 @@ document.addEventListener('DOMContentLoaded', () => {
         awardResult.textContent = awarded.length ? `Премируются: ${awarded.join(', ')}` : 'Не выбрано ни одного сотрудника.';
     });
 
-    // Показ/скрытие формы добавления сотрудника
+    // показ/скрытие формы добавления сотрудника
     addEmployeeBtn.addEventListener('click', () => {
         addEmployeeFormWrapper.style.display = addEmployeeFormWrapper.style.display === 'none' ? 'block' : 'none';
     });
 
-    // Валидация URL
     function validateURL(url) {
         return /^(https?:\/\/).*(\.php|\.html)$/.test(url);
     }
 
-    // Валидация телефона
     function validatePhone(phone) {
         const patterns = [
             /^8029\d{7}$/,
@@ -129,7 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return patterns.some(p => p.test(phone.replace(/\s+/g,'')));
     }
 
-    // Проверка всех полей на заполненность
     function checkAllFieldsFilled() {
         return empFullName.value.trim() !== '' &&
                empPhotoUrl.value.trim() !== '' &&
@@ -138,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
                empEmail.value.trim() !== '';
     }
 
-    // Включение/отключение кнопки добавления
     function updateSubmitButtonState() {
         submitEmployeeBtn.disabled = !checkAllFieldsFilled();
     }
@@ -147,14 +142,12 @@ document.addEventListener('DOMContentLoaded', () => {
         input.addEventListener('input', updateSubmitButtonState);
     });
 
-    updateSubmitButtonState(); // инициализация состояния кнопки
+    updateSubmitButtonState(); 
 
-    // Добавление сотрудника
     submitEmployeeBtn.addEventListener('click', () => {
         let valid = true;
         validationResult.textContent = '';
 
-        // Сброс визуальных ошибок
         [empPhotoUrl, empPhone].forEach(el => el.classList.remove('invalid'));
 
         if(!validateURL(empPhotoUrl.value)) {
@@ -185,9 +178,8 @@ document.addEventListener('DOMContentLoaded', () => {
         employees.push(newEmployee);
         renderTable(employees);
 
-        // Очистка формы
         addEmployeeForm.reset();
         validationResult.textContent = 'Сотрудник добавлен!';
-        updateSubmitButtonState(); // отключаем кнопку после добавления
+        updateSubmitButtonState(); 
     });
 });
