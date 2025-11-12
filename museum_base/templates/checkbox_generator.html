@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Динамические флажки{% endblock %}
+
+{% block content %}
+<h2 class="title">Динамическое создание флажков</h2>
+
+<div class="main-controls">
+    <label>
+        <input type="checkbox" id="addCheckboxTrigger">
+        Нажмите, чтобы добавить новый флажок
+    </label>
+</div>
+
+<form id="checkboxForm">
+    <div id="checkboxContainer"></div>
+    <button type="submit">Отправить</button>
+</form>
+
+<script src="{% static 'js/checkbox_generator.js' %}"></script>
+
+<style>
+    .title {
+        text-align: center;
+        color: #4b0082;
+        margin-bottom: 20px;
+    }
+    .main-controls {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .checkbox-container {
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .checkbox-item {
+        border: 2px solid #4b0082;
+        padding: 15px;
+        border-radius: 10px;
+        background-color: #f8f8ff;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .attr-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .attr-controls label {
+        font-size: 0.9em;
+    }
+    .remove-btn {
+        align-self: flex-end;
+        background-color: #a00000;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .remove-btn:hover {
+        background-color: #c00000;
+    }
+</style>
+{% endblock %}

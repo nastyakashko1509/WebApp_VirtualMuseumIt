@@ -13,6 +13,10 @@ def toys_view(request):
     return render(request, 'toys.html')
 
 
+def checkbox_generator(request):
+    return render(request, 'checkbox_generator.html')
+
+
 def museum_info(request):
 
     tours = Tour.objects.all()
