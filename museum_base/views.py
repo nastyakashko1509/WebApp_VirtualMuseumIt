@@ -9,6 +9,10 @@ def home(request):
     return render(request, 'home.html', {'last_news': last_news})
 
 
+def toys_view(request):
+    return render(request, 'toys.html')
+
+
 def museum_info(request):
 
     tours = Tour.objects.all()

@@ -87,6 +87,7 @@
             <a href="{% url 'sales_charts_page' %}" target="_blank">Графики</a><br>
             <a href="{% url 'joke' %}"target="_blank">Шутки</a><br>
             <a href="{% url 'additional_page' %}" target="_blank">Дополнительная страница</a><br>
+            <a href="{% url 'toys' %}" target="_blank">Список игрушек</a><br>
             <form method="post" action="{% url 'logout' %}">
                     {% csrf_token %}
                     <button type="submit">Выйти</button>

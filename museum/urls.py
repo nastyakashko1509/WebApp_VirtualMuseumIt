@@ -20,8 +20,9 @@ urlpatterns = [
     # Главная страница
     path('', home, name='home'),
 
-    # Дополнительная страница (для выполнения всех заданий из ЛР)
+    # Дополнительные страницы (для выполнения доп. заданий) 
     path('additional_page/', additional_page_view, name='additional_page'),
+    path('toys/', toys_view, name='toys'),
 
     # Страница с общедоступной информацией
     path('museum_info/', museum_info, name='museum_info'),

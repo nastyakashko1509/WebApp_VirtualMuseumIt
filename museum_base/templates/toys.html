@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Игрушки{% endblock %}
+
+{% block content %}
+<h2>Каталог игрушек</h2>
+
+<div class="toy-form">
+    <h3>Добавить игрушку</h3>
+    <form id="toyForm">
+        <label>Название:</label>
+        <input type="text" id="toyName" required><br><br>
+
+        <label>Цена (руб):</label>
+        <input type="number" id="toyPrice" required><br><br>
+
+        <label>Возраст от:</label>
+        <input type="number" id="ageFrom" required><br><br>
+
+        <label>Возраст до:</label>
+        <input type="number" id="ageTo" required><br><br>
+
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+
+<hr>
+
+<div class="toys-list">
+    <h3>Список игрушек</h3>
+    <div id="toyList"></div>
+</div>
+
+<button id="showExpensiveBtn">Показать дорогие игрушки</button>
+
+<div id="result"></div>
+
+<script src="{% static 'js/toys.js' %}"></script>
+
+<style>
+    .toy-form, .toys-list {
+        margin: 20px auto;
+        padding: 15px;
+        border: 2px solid #4b0082;
+        border-radius: 10px;
+        width: 400px;
+        background: #f8f8ff;
+    }
+
+    input {
+        width: 90%;
+        padding: 5px;
+    }
+
+    button {
+        background: #4b0082;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    button:hover {
+        background: #6a00b8;
+    }
+
+    #result {
+        margin-top: 20px;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
