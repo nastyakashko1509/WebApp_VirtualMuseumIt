@@ -42,7 +42,7 @@ class ToyClass {
 
 class ToyWithAgeClass extends ToyClass {
     constructor(name, price, ageFrom, ageTo) {
-        super(name, price);
+        super(name, price); // вызов родительского конструктора
         this.ageFrom = ageFrom;
         this.ageTo = ageTo;
     }
