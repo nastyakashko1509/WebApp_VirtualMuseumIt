@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         let index = 0;
-        const interval = setInterval(() => {
+        const interval = setInterval(() => { // повторяющееся действие
             if (index >= xValues.length) {
                 clearInterval(interval);
                 buildTable(xValues, fSeries, fExact, nMax); 
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
             functionChart.data.labels.push(xValues[index]);
             functionChart.data.datasets[0].data.push(fSeries[index]);
             functionChart.data.datasets[1].data.push(fExact[index]);
-            functionChart.update('none');
+            functionChart.update('none'); // удаление анимации отрисовки
             index++;
         }, 50); 
     });
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!functionChart) return;
         const link = document.createElement('a');
         link.download = 'chart.png';
-        link.href = functionChart.toBase64Image();
+        link.href = functionChart.toBase64Image(); // формать Base64 (1 и 0)
         link.click();
     });
 

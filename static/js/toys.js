@@ -19,7 +19,7 @@ function ToyWithAgeProto(name, price, ageFrom, ageTo) {
     this.ageTo = ageTo;
 }
 ToyWithAgeProto.prototype = Object.create(ToyProto.prototype);
-ToyWithAgeProto.prototype.constructor = ToyWithAgeProto;
+ToyWithAgeProto.prototype.constructor = ToyWithAgeProto; 
 
 ToyWithAgeProto.prototype.getAgeRange = function() {
     return `для детей от ${this.ageFrom} до ${this.ageTo} лет`;
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         toys.push(toy);
         displayToys();
-        toyForm.reset();
+        toyForm.reset(); // очистка полей формы 
     });
 
     function displayToys() {
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const maxPrice = Math.max(...toys.map(t => t.price));
+        const maxPrice = Math.max(...toys.map(t => t.price)); 
         const expensiveToys = toys.filter(t => Math.abs(maxPrice - t.price) <= 1);
 
         resultDiv.innerHTML = `<p>Самые дорогие игрушки (разница ≤ 1 руб.):</p>` +
