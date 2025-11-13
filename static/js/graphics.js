@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const xInput = document.getElementById('xMax');
     const nInput = document.getElementById('nMax');
     const ctx = document.getElementById('functionChart').getContext('2d');
-    let functionChart; // переменная для объекта Chart.js для удаления/обновления графика
+    let functionChart; // переменная для объекта Chart.js 
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
             fExact.push(Math.acos(x));
         }
 
-        // график
         if (functionChart) functionChart.destroy();
         functionChart = new Chart(ctx, {
             type: 'line',
@@ -63,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         borderColor: '#1f77b4',
                         backgroundColor: 'rgba(31,119,180,0.2)',
                         fill: false,
-                        tension: 0.3
+                        tension: 0.3 // сглаживание
                     },
                     {
                         label: 'Точная функция',
@@ -105,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         let index = 0;
-        const interval = setInterval(() => { // повторяющееся действие
+        const interval = setInterval(() => { 
             if (index >= xValues.length) {
                 clearInterval(interval);
                 buildTable(xValues, fSeries, fExact, nMax); 
@@ -124,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!functionChart) return;
         const link = document.createElement('a');
         link.download = 'chart.png';
-        link.href = functionChart.toBase64Image(); // формать Base64 (1 и 0)
+        link.href = functionChart.toBase64Image(); // формат Base64 (1 и 0)
         link.click();
     });
 
