@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const parentConsentInput = document.getElementById('parentConsentInput');
 
     form.addEventListener('submit', (e) => {
-        e.preventDefault(); // остановка стандартного поведения (отправки на сервер)
+        e.preventDefault(); 
 
         const dobValue = dobInput.value;
         if (!dobValue) {
