@@ -25,7 +25,6 @@ class MuseumSlider {
     }
     
     init() {
-        // создание необходимых элементов управления
         this.setupNavigation();
         this.setupPagination();
         this.setupCounter();
@@ -64,14 +63,14 @@ class MuseumSlider {
             this.pagination.appendChild(dot);
         });
         
-        this.updatePagination();
+        this.updatePagination(); // выделение активной точки
     }
     
-    setupCounter() { // вызывается 1 раз при инициализации
+    setupCounter() { 
         this.updateCounter();
     }
     
-    applySettings() {
+    applySettings() { // избыточен
         if (!this.settings.showNavs) {
             this.prevBtn.style.display = 'none';
             this.nextBtn.style.display = 'none';
