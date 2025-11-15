@@ -23,12 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let sortField = '';
     let sortAsc = true;
 
-    // пагинация
     const rowsPerPage = 3;
     let currentPage = 1;
     const paginationContainer = document.createElement('div');
     paginationContainer.id = 'pagination';
-    paginationContainer.style.textAlign = 'center';
     paginationContainer.style.marginBottom = '20px';
     paginationContainer.style.whiteSpace = 'nowrap'; // отмена переноса
     tableBody.parentNode.insertBefore(paginationContainer, tableBody.nextSibling);
@@ -105,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Сортировка
     document.querySelectorAll('#employeesTable th[data-sort]').forEach(th => {
         th.addEventListener('click', () => {
             const field = th.dataset.sort;
@@ -126,7 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Фильтр
     filterBtn.addEventListener('click', () => {
         const term = filterInput.value.toLowerCase();
         const filtered = employees.filter(emp => 
@@ -137,13 +133,12 @@ document.addEventListener('DOMContentLoaded', () => {
         renderPagination(filtered);
     });
 
-    // Премирование выбранных
     awardBtn.addEventListener('click', () => {
         const awarded = employees.filter(emp => emp.selected).map(emp => emp.full_name);
         awardResult.textContent = awarded.length ? `Премируются: ${awarded.join(', ')}` : 'Не выбрано ни одного сотрудника.';
     });
 
-    // Показ/скрытие формы добавления
+    // показ/скрытие формы добавления
     addEmployeeBtn.addEventListener('click', () => {
         addEmployeeFormWrapper.style.display = addEmployeeFormWrapper.style.display === 'none' ? 'block' : 'none';
     });
